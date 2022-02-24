@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-24T15:58:18.380Z" agent="5.0 (Windows)" etag="AD8Vw0jcgNz6bxJlX4_v" version="16.6.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-24T16:00:28.399Z" agent="5.0 (Windows)" etag="JQzINsPJ7OYOnoOP4nqS" version="16.6.3" type="github">
   <diagram id="zOlCcA-92T-VcKjqOryV" name="Page-1">
     <mxGraphModel dx="1751" dy="973" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -167,8 +167,16 @@
         <mxCell id="8t-ISdGKPEdPAOQoRQgy-14" value="&lt;font color=&quot;#EA6B66&quot;&gt;Owners&lt;/font&gt;" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1160" y="210" width="60" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="8t-ISdGKPEdPAOQoRQgy-17" value="Add Piece" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#EA6B66;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+        <mxCell id="8t-ISdGKPEdPAOQoRQgy-17" value="&lt;span style=&quot;background-color: rgb(255 , 255 , 255)&quot;&gt;Add Piece&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#EA6B66;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
           <mxGeometry x="1241" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8t-ISdGKPEdPAOQoRQgy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=#000000;" edge="1" parent="1" source="8t-ISdGKPEdPAOQoRQgy-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8t-ISdGKPEdPAOQoRQgy-19" value="&lt;font color=&quot;#EA6B66&quot;&gt;Owners&lt;/font&gt;" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="220" width="60" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
