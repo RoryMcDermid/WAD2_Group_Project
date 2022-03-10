@@ -20,16 +20,16 @@
     </form>
         
         {% if user.is_power_user %}
-        <button><a href="{% url 'add_piece' %}">add pieces</a></button>
-        <button><a href="{% url 'posts' %}">view posts</a></button>
+        <button><a href="{% url 'arty:add_piece' %}">add pieces</a></button>
+        <button><a href="{% url 'arty:posts' %}">view posts</a></button>
             {% if user.is_owner %}
-            <button><a href="{% url 'add_gallery' %}">add gallery</a></button>
-            <button><a href="{% url 'manage_users' %}">manage users</a></button>
+            <button><a href="{% url 'arty:add_gallery' %}">add gallery</a></button>
+            <button><a href="{% url 'arty:manage_users' %}">manage users</a></button>
             {% endif %}
         {% endif %}
     {% else %}
         Please login to access details.
         <br>
-        Click <a href="">here</a> to login.
+        Click <a href="{% url 'arty:login' %}">here</a> to login.
     {% endif %}
 {% endblock %}
