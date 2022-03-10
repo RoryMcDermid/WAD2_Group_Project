@@ -50,7 +50,7 @@ urlpatterns = [
     path('category/<slug:category_name_slug>/add_page/', views.add_page, name='add_page'),
 
 
-    saved for ArtyParty views.py
+    saved for artyParty views.py
 
 
 """
