@@ -1,6 +1,7 @@
 from django.urls import path
 from artyParty import views
 
+
 app_name = 'Arty Party'
 
 urlpatterns = [
@@ -23,6 +24,5 @@ urlpatterns = [
     path('gallery/<slug:gallery_name_slug>/<slug:piece_name_slug>/', views.show_piece, name='show_piece'),
     path('gallery/<slug:gallery_name_slug>/<slug:piece_name_slug>/<slug:review_name_slug>/', views.show_review,
          name='show_review'),
-
 ]
 
