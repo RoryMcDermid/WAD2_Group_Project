@@ -1,0 +1,21 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Galleries               
+{% endblock %}
+
+{% block body_block %}
+<div class=galleries_title>
+    <h2>Galleries</h2>
+    <form class="form" role="search">
+        <input type="search" class="query" name="q"
+         placeholder="Search..."
+         aria-label="Search through site content">
+        <button>Search</button>
+      </form>
+</div>
+
+
+
+{% endblock %}

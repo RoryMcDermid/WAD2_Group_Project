@@ -1,0 +1,21 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Sign_up
+{% endblock %}
+
+{% block body_block %}
+{% if registered %}
+<a href="{% url 'home' %}">Return to the homepage.</a><br />
+{% else %}
+<strong>Sign in</strong><br />
+<form id="user_form" method="post" action="{% url 'sign_up' %}" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+
+    <input type="submit" name="submit" value="sign up" />
+</form>
+{% endblock %}
