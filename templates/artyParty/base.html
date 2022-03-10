@@ -19,22 +19,22 @@
             </h1>
             <ul>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'myaccount'%}">my account</a></li>
+                <li><a href="{% url 'arty:myaccount'%}">my account</a></li>
                 <!-- Show these links when the user is logged in -->                
             {% else %}
                 <!-- Show these links when the user is NOT logged in -->
-                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'arty:login' %}">Login</a></li>
             {% endif %}
                 <!-- Outside the conditional statements, ALWAYS show -->
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'contact_us %}"></a>Contact</li>
+                <li><a href="{% url 'arty:about' %}">About</a></li>
+                <li><a href="{% url 'arty:contact_us %}"></a>Contact</li>
             </ul>
         </div>
 
         <div class= index_line>
             <ul>
-                <li><a href="{% url 'home' %}">Homepage</a></li>
-                <li><a href="{% url 'gallaries %}"></a>Galleries</li>
+                <li><a href="{% url 'arty:home' %}">Homepage</a></li>
+                <li><a href="{% url 'arty:gallaries %}"></a>Galleries</li>
             </ul>
         </div>
 
