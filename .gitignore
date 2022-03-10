@@ -8,12 +8,15 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+
+venv/
 build/
 develop-eggs/
 dist/
 downloads/
 eggs/
 .eggs/
+.idea/
 lib/
 lib64/
 parts/
@@ -28,7 +31,6 @@ share/python-wheels/
 MANIFEST
 db.sqlite3
 *.pyc
-.idea/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
