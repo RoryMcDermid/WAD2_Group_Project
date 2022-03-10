@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2d0b76e0-6be0-42b7-98b0-b99e600b9e9f" name="Changes" comment="Changed project entirely please delete and refork" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="25vaBAXOHUB5pzqicJwJmUvdq6U" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\James\documents\OneDrive - University of Glasgow\Glasgow\Year 2\Web App Dev 2\ArtyPartyProject\Design Spec Files" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2d0b76e0-6be0-42b7-98b0-b99e600b9e9f" name="Changes" comment="" />
+      <created>1646409879641</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646409879641</updated>
+      <workItem from="1646409883882" duration="3415000" />
+      <workItem from="1646414320518" duration="639000" />
+      <workItem from="1646416476936" duration="1366000" />
+      <workItem from="1646924722468" duration="184000" />
+      <workItem from="1646925194542" duration="313000" />
+    </task>
+    <task id="LOCAL-00001" summary="Setup Django &quot;ArtyParty&quot; App and virtual env">
+      <created>1646416487483</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1646416487483</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added requirements.txt and updated README with info">
+      <created>1646416936578</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646416936578</updated>
+    </task>
+    <task id="LOCAL-00003" summary="just changed to folder name from ArtyParty to ArtyPartyProject so it doesn't get too confusing">
+      <created>1646417293406</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646417293406</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Moved all the design spec files out of the way">
+      <created>1646417527319</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646417527319</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added db.sqlite3 and *.pyc to .gitignore">
+      <created>1646417803431</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646417803431</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Changed project entirely please delete and refork">
+      <created>1646925232422</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646925232422</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Setup Django &quot;ArtyParty&quot; App and virtual env" />
+    <MESSAGE value="Added requirements.txt and updated README with info" />
+    <MESSAGE value="just changed to folder name from ArtyParty to ArtyPartyProject so it doesn't get too confusing" />
+    <MESSAGE value="Moved all the design spec files out of the way" />
+    <MESSAGE value="Added db.sqlite3 and *.pyc to .gitignore" />
+    <MESSAGE value="Changed project entirely please delete and refork" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed project entirely please delete and refork" />
+  </component>
+</project>
