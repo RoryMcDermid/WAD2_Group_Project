@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("This is the home")
+    return render(request, 'artyParty/homepage.html', context={})
 
 
 def user_login(request):
