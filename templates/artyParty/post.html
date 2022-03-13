@@ -1,0 +1,37 @@
+{% extends 'artyParty/base.html' %}
+{% load staticfiles %}
+{% load artyParty_template_tags %}
+
+{% block title_block %}
+    View_Post               
+{% endblock %}
+
+{% block body_block %}
+<!-- change '-poster- -owner-'-->
+{% if user.is_owner or user.is_power_user %}
+    {% if user.is_owner %}
+    <h2>posted galleries</h2>
+    {% for gallery in galleries %}
+        {% if gallery.owner == {{ user.Username }} %}
+        <li><a href="/gallery/{{ gallery.name }}/"></a>{{ gallery.name }}</li>
+        {% else %}
+        <strong>You haven't add any gallery.</strong>
+        <strong>Let's add gallery</strong>
+        <a href="{% url 'arty:add_gallery' %}">add galleries</a>
+        {% endif %}
+    {% endfor %}
+    {% endif%}
+    {% for piece in pieces %}
+        {% if piece.poster == {{ user.Username }} %}
+        <li><a href="/gallery/{{ gallery.name }}/{{ piece.name }}">{{ piece.name }}</a></li>
+        {% else %}
+        <strong>You haven't add any pieces.</strong>
+        <strong>Let's add pieces</strong>
+        <a href="{% url 'arty:add_piece' %}">add pieces</a>
+        {% endif %}
+    {% endfor %}
+{% else %}
+<strong>You don't have permission to post anything.</strong>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,11 @@
+<ul>
+{% if galleries %}
+    {% for g in galleries %}
+    <li>
+        <a href="{% url 'arty:show_gallery' c_g.slug %}">{{ g.name }}</a>
+    </li>
+    {% endfor %}
+{% else %}
+    <li><strong>There are no categories present.</strong></li>
+{% endif %}
+</ul>

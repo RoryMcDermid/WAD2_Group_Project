@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
-<div class=galleries_title>
+<div class="search_bar">
     <h2>Galleries</h2>
     <form class="form" role="search">
         <input type="search" class="query" name="q"
@@ -14,8 +14,19 @@
          aria-label="Search through site content">
         <button>Search</button>
       </form>
-</div>
-
+</div class = "list_of_galleries">
+<!-- change if name in modelds/populate are difference  '-gallery- -name- -describe-' -->>
+<ul>
+    {% if galleries %}
+        {% for g in categories %}
+            <li><a href="{% url 'arty:pieces' g.slug %}"><img src="" alt="image of gallery"></a></li>
+            <li>{{ gallery.name }}</li>
+            <li>{{ gallery.describe }}</li>
+        {% endfor %}
+    {% else %}
+        <li><strong>There are no galleries present.</strong></li>
+    {% endif %}
+</ul>
 
 
 {% endblock %}

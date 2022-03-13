@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% load rango_template_tags %}
+{% load artyParty_template_tags %}
 
 <html>
     <head lang='en'>
@@ -19,7 +19,7 @@
             </h1>
             <ul>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'arty:myaccount'%}">my account</a></li>
+                <li><a href="{% url 'arty:my_account'%}">{{user.username}}</a></li>
                 <!-- Show these links when the user is logged in -->                
             {% else %}
                 <!-- Show these links when the user is NOT logged in -->
@@ -34,7 +34,9 @@
         <div class= index_line>
             <ul>
                 <li><a href="{% url 'arty:home' %}">Homepage</a></li>
-                <li><a href="{% url 'arty:gallaries %}"></a>Galleries</li>
+                <li><a href="{% url 'arty:galleries %}"></a>Galleries</li>
+                {% block extral_index_block %}
+                {% endblock %}
             </ul>
         </div>
 
@@ -42,24 +44,5 @@
             {% block body_block %}
             {% endblock %}
         </div>
-    <!--
-        <div>
-            <ul>
-            {% if user.is_authenticated %}
-                
-                <li><a href="{% url 'artyParty:gallaries' %}">Gallaries Page</a></li>
-                <li><a href="{% url 'artyParty:logout' %}">Logout</a></li>
-                <li><a href="{% url 'artyParty:add_gallary' %}">Add New Gallery</a></li>
-            {% else %}
-                
-                <li><a href="{% url 'artyParty:register' %}">Sign Up</a></li>
-                <li><a href="{% url 'artyParty:login' %}">Login</a></li>
-            {% endif %}
-                
-                <li><a href="{% url 'artyParty:about' %}">About</a></li>
-                <li><a href="{% url 'artyParty:index' %}">Index</a></li>
-            </ul>
-        </div> 
-    -->
     </body>
 </html>

@@ -2,12 +2,21 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Pieces      
+    {% if gallery %}
+        {{ gallery.name }}
+    {% else %}
+        Unknown Gallery
+    {% endif %}     
+{% endblock %}
+
+{% block extral_index_block %}
+<li><a href="{% url 'arty:pieces' %}">Homepage</a></li>
 {% endblock %}
 
 {% block body_block %}
-<div class=pieces_title>
-    <h2>pieces</h2>
+<div class="search_bar">
+    <!-- change if name in modelds/populate are difference  '-gallery-' -->>
+    <h2>Art Piece</h2>
     <form class="form" role="search">
         <input type="search" class="query" name="q"
          placeholder="Search..."
@@ -15,7 +24,28 @@
         <button>Search</button>
       </form>
 </div>
-
+<div>
+    {% if gallery %}
+    <h1>{{ gallery.name }}</h1>
+    {% if pieces %}
+    <ul>
+        <!-- changed if name in modelds/populate are difference  '-pieces- -gallery- -image_url-' -->>
+        {% for page in pages %}
+        <li><a href="{{ piece.url }}"><img src="{{ piece.image_url }}" alt="piece in gallary"></a></li>
+        <li>{{ pieces.name }}</li>
+        <li>{{ pieces.date }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <strong>No pieces currently in gallery.</strong>
+    {% endif %}
+    {% if user.is_owner or user.is_power_user %}
+    <a href="{% url 'arty:add_piece' gallary.slug %}">Add Pieces</a> <br />
+    {% endif %}
+    {% else %}
+    The specified gallary does not exist.
+    {% endif %}
+</div>
 
 
 {% endblock %}
