@@ -44,6 +44,10 @@ def edit_details(request):
 
 def posts(request):
     return HttpResponse("View Posts")
+    # res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Christ_of_Saint_John_of_the_Cross")
+    # data = res.json()
+    # context_dict = {'descript': data['extract']}
+    # return render(request, "View Posts", context_dict)
 
 
 def category(request):
