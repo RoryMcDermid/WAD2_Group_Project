@@ -36,12 +36,13 @@ class Gallery(models.Model):
 
 class Piece(models.Model):
     PIECE_NAME_MAX_LENGTH = 50
+    PIECE_CATEGORY_MAX_LENGTH = 20
 
     piece_img = models.ImageField(blank=False)
     piece_id = models.IntegerField(unique=True, blank=False)
     gallery_id = models.ForeignKey(Gallery, on_delete=models.CASCADE)
     piece_name = models.CharField(max_length=PIECE_NAME_MAX_LENGTH, blank=False)
-    piece_category = models.CharField(blank=False)
+    piece_category = models.CharField(max_length=PIECE_CATEGORY_MAX_LENGTH, blank=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
