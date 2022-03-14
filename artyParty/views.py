@@ -3,10 +3,13 @@ from django.http import HttpResponse
 
 
 def home(request):
+    # top 4 peices ordered by popularity
+    # change template to display them line 11
     return render(request, 'artyParty/homepage.html', context={})
 
 
 def user_login(request):
+
     return HttpResponse("Login")
 
 
