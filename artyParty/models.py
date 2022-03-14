@@ -20,6 +20,7 @@ class Gallery(models.Model):
     gallery_id = models.IntegerField(unique=True, blank=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     gallery_name = models.CharField(max_length=GALLERY_NAME_MAX_LENGTH, blank=False)
+    gallery_description = models.TextField()
     slug = models.SlugField(blank=True, unique=True)
 
     def save(self, *args, **kwargs):
