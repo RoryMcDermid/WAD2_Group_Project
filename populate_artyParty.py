@@ -8,3 +8,6 @@ from artyParty.models import User, Gallery, Piece, Review
 
 def populate():
 
+    hunterian_pieces = [
+        {}
+    ]
