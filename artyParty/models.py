@@ -37,6 +37,7 @@ class Gallery(models.Model):
 class Piece(models.Model):
     PIECE_NAME_MAX_LENGTH = 50
 
+    piece_img = models.ImageField(blank=False)
     piece_id = models.IntegerField(unique=True, blank=False)
     gallery_id = models.ForeignKey(Gallery, on_delete=models.CASCADE)
     piece_name = models.CharField(max_length=PIECE_NAME_MAX_LENGTH, blank=False)

@@ -12,7 +12,7 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 class PieceAdmin(admin.ModelAdmin):
-    list_display = ('piece_id', 'gallery_id', 'piece_name', 'user_id')
+    list_display = ('piece_img', 'piece_id', 'gallery_id', 'piece_name', 'user_id')
 
 
 class ReviewAdmin(admin.ModelAdmin):
