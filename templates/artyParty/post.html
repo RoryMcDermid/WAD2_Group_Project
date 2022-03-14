@@ -15,7 +15,7 @@
         {% if gallery.owner == {{ user.Username }} %}
         <li><a href="/gallery/{{ gallery.name }}/"></a>{{ gallery.name }}</li>
         {% else %}
-        <strong>You haven't add any gallery.</strong>
+        <strong>You haven't added a gallery.</strong>
         <strong>Let's add gallery</strong>
         <a href="{% url 'arty:add_gallery' %}">add galleries</a>
         {% endif %}

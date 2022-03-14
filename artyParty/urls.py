@@ -19,7 +19,7 @@ urlpatterns = [
     path('category/', views.category, name='category'),
     path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
     path('add_category/', views.add_category, name='add_category'),
-    path('gallery/', views.gallery, name='gallery'),
+    path('gallery/', views.pieces, name='pieces'),
     path('gallery/<slug:gallery_name_slug>/', views.show_gallery, name='show_gallery'),
     path('gallery/<slug:gallery_name_slug>/<slug:piece_name_slug>/', views.show_piece, name='show_piece'),
     path('gallery/<slug:gallery_name_slug>/<slug:piece_name_slug>/<slug:review_name_slug>/', views.show_review,

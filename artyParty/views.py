@@ -54,12 +54,12 @@ def manage_users(request):
 
 
 def edit_details(request):
-
+    # ???????
     return HttpResponse("Edit details")
 
 
 def posts(request):
-
+    # what is this posts page about? Is this where we post info?
 
     return HttpResponse("View Posts")
     # res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Christ_of_Saint_John_of_the_Cross")
@@ -67,30 +67,40 @@ def posts(request):
     # context_dict = {'descript': data['extract']}
     # return render(request, "View Posts", context_dict)
 
+# CATEGORIES MAYBE ADD LATER, BUT LIKE FUCK THAT RN
 
-def category(request):
-    return HttpResponse("Category (is)")
+# def category(request):
+#     # show all peices in given category
+#     # qurey db for peices where category == passed value
+#
+#     return HttpResponse("Category (is)")
+#
+#
+# def add_category(request):
+#
+#     return HttpResponse("Add Category")
+#
+# def show_category(request):
+#     return HttpResponse("Add Piece")
 
 
-def add_category(request):
-    return HttpResponse("Add Category")
-
-def show_category(request):
-    return HttpResponse("Add Piece")
-
-
-def gallery(request):
+def pieces(request):
+    # querey db for all pieces where gallery == passed val
+    #
     return HttpResponse("Galleries page I think?")
 
 
 def show_gallery(request):
+    ## see rango show_category
     return HttpResponse("Here's a gallery")
 
 
 def show_piece(request):
+    ## see rango show_category
     return HttpResponse("Showing piece")
 
 
 def show_review(request):
+    ## see rango show_category
     return HttpResponse("Showing Review")
 
