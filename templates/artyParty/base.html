@@ -27,14 +27,14 @@
             {% endif %}
                 <!-- Outside the conditional statements, ALWAYS show -->
                 <li><a href="{% url 'arty:about' %}">About</a></li>
-                <li><a href="{% url 'arty:contact_us %}"></a>Contact</li>
+                <li><a href="{% url 'arty:contact_us' %}"></a>Contact</li>
             </ul>
         </div>
 
         <div class= index_line>
             <ul>
                 <li><a href="{% url 'arty:home' %}">Homepage</a></li>
-                <li><a href="{% url 'arty:galleries %}"></a>Galleries</li>
+                <li><a href="{% url 'arty:galleries' %}"></a>Galleries</li>
                 {% block extral_index_block %}
                 {% endblock %}
             </ul>
