@@ -10,6 +10,7 @@ class User(models.Model):
     user_name = models.CharField(max_length=USER_NAME_MAX_LENGTH, blank=False)
     user_type = models.CharField(max_length=USER_TYPE_MAX_LENGTH, blank=False)
 
+
     def __str__(self):
         return self.user_id
 
