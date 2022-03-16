@@ -87,7 +87,7 @@ def posts(request):
     # context_dict = {'descript': data['extract']}
     # return render(request, "View Posts", context_dict)
 
-# CATEGORIES MAYBE ADD LATER, BUT LIKE FUCK THAT RN
+# CATEGORIES MAYBE ADD LATER, BUT LIKE FUCK THAT RN - james
 
 def category(request):
     # show all peices in given category
@@ -130,7 +130,14 @@ def show_piece(request):
     ## see rango show_category
     context_dict = {}
 
-    return render(request, 'artyParty/piece.html', context=context_dict)
+    # return render(request, 'artyParty/post.html', context=context_dict)
+
+    res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Christ_of_Saint_John_of_the_Cross")
+    data = res.json()
+    context_dict = {'descript': data['extract']}
+    # return render(request, "View Posts", context_dict)
+
+    return render(request, 'artyParty/post.html', context=context_dict)
 
 
 
