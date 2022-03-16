@@ -1,0 +1,61 @@
+body {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, grey 1px, transparent 1px),
+    linear-gradient(to bottom, grey 1px, transparent 1px);
+}
+
+.index_line {
+    background-color: white;
+    display: inline-flex;
+    border-bottom: 1px solid darkgray;
+    border-top: 1px solid grey;
+    width: 100%;
+}
+
+.index_line li{
+    list-style-type: none;
+    padding-right: 15px;
+    padding: 0 0.5rem;
+
+}
+
+.index_line li:not(:last-child) {
+    padding-right: 15px;
+    border-right: 0.5px solid black;
+}
+
+.index_line a{
+    color: black;
+    text-decoration: none;
+}
+
+.navbar-nav a{
+    color: black;
+    text-decoration: none;
+}
+
+.logo{
+    min-height: 20px;
+    padding: 19px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.navbar-nav{
+    background-blend-mode: inherit;
+}
+
+.info{
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1.5px solid black;
+}
+
+.info p{
+    padding-left: 10px;
+}
