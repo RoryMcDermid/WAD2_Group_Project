@@ -4,11 +4,14 @@ from django.urls import reverse
 from django.test import TestCase
 from django.conf import settings
 
+
+# request factory
+
 FAILURE_HEADER = f"{os.linesep}{os.linesep}{os.linesep}================{os.linesep}Arty Test Fail{os.linesep}================{os.linesep}"
 FAILURE_FOOTER = f"{os.linesep}"
 
 
-class Chapter3ProjectStructureTests(TestCase):
+class ProjectStructureTests(TestCase):
     """
     File structure tests
     """
@@ -56,7 +59,7 @@ class Chapter3ProjectStructureTests(TestCase):
         """
         Did you add the new arty app to your INSTALLED_APPS list?
         """
-        is_app_configured = 'arty' in settings.INSTALLED_APPS
+        is_app_configured = 'artyParty' in settings.INSTALLED_APPS
 
         self.assertTrue(is_app_configured,
                         f"{FAILURE_HEADER}The arty app is missing from your setting's INSTALLED_APPS list.{FAILURE_FOOTER}")
@@ -69,7 +72,7 @@ class IndexPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
         self.project_urls_module = importlib.import_module('wad_2_team_project.urls')
@@ -90,12 +93,12 @@ class IndexPageTests(TestCase):
 
         self.assertTrue(index_mapping_exists,
                         f"{FAILURE_HEADER}The home URL mapping could not be found. Check your PROJECT'S urls.py module.{FAILURE_FOOTER}")
-        self.assertEquals(reverse('arty:index'), '/arty/',
+        self.assertEquals(reverse('arty:home'), '/arty/',
                           f"{FAILURE_HEADER}The home URL lookup failed. Check arty's urls.py module. You're missing something in there.{FAILURE_FOOTER}")
 
-    #     def test_response(self):
-
-    # """
+    # def test_response(self):
+    #
+    #     """
     #     Does the response from the server contain the required string?
     #     """
     #     response = self.client.get(reverse('arty:index'))
@@ -117,7 +120,7 @@ class IndexPageTests(TestCase):
     #
     #     self.assertTrue(single_quotes_check or double_quotes_check,
     #                     f"{FAILURE_HEADER}We couldn't find the hyperlink to the /arty/about/ URL in your index page. Check that it appears EXACTLY as in the book.{FAILURE_FOOTER}")
-
+    #
 
 class AboutPageTests(TestCase):
     """
@@ -126,7 +129,7 @@ class AboutPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -157,7 +160,7 @@ class loginPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -188,7 +191,7 @@ class homePageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -219,7 +222,7 @@ class signUpPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -239,7 +242,7 @@ class signUpPageTests(TestCase):
         """
         Checks whether the sign_up view has the correct URL mapping.
         """
-        self.assertEquals(reverse('arty:sign_up'), '/sign_up/',
+        self.assertEquals(reverse('arty:sign_up'), '/arty/sign_up/',
                           f"{FAILURE_HEADER}Home URL mapping is either missing or mistyped.{FAILURE_FOOTER}")
 
 
@@ -250,7 +253,7 @@ class contactUsPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -270,7 +273,7 @@ class contactUsPageTests(TestCase):
         """
         Checks whether the view has the correct URL mapping.
         """
-        self.assertEquals(reverse('arty:contact_us'), '/arty/contact_us',
+        self.assertEquals(reverse('arty:contact_us'), '/arty/contact_us/',
                           f"{FAILURE_HEADER}Home URL mapping is either missing or mistyped.{FAILURE_FOOTER}")
 
 
@@ -281,7 +284,7 @@ class myAccountPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -301,7 +304,7 @@ class myAccountPageTests(TestCase):
         """
         Checks whether the login view has the correct URL mapping.
         """
-        self.assertEquals(reverse('arty:my_account'), '/arty/my_account',
+        self.assertEquals(reverse('arty:my_account'), '/arty/my_account/',
                           f"{FAILURE_HEADER}My account URL mapping is either missing or mistyped.{FAILURE_FOOTER}")
 
 
@@ -312,7 +315,7 @@ class addPiecePageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -343,7 +346,7 @@ class addGalleryPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -374,7 +377,7 @@ class manageUsersPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -405,7 +408,7 @@ class editDetailsPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -436,7 +439,7 @@ class postsPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -467,7 +470,7 @@ class categoryPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -487,7 +490,7 @@ class categoryPageTests(TestCase):
         """
         Checks whether the view has the correct URL mapping.
         """
-        self.assertEquals(reverse('arty:category'), '/arty/category',
+        self.assertEquals(reverse('arty:category'), '/arty/category/',
                           f"{FAILURE_HEADER} URL mapping is either missing or mistyped.{FAILURE_FOOTER}")
 
 
@@ -498,7 +501,7 @@ class showCategoryPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -518,7 +521,7 @@ class showCategoryPageTests(TestCase):
     #     """
     #     Checks whether the view has the correct URL mapping.
     #     """
-    #     self.assertEquals(reverse('arty:show'), '/arty/contact_us',
+    #     self.assertEquals(reverse('arty:show'), '/arty/contact_us/',
     #                       f"{FAILURE_HEADER} URL mapping is either missing or mistyped.{FAILURE_FOOTER}")
 
 
@@ -529,7 +532,7 @@ class addCategoryPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -549,7 +552,7 @@ class addCategoryPageTests(TestCase):
         """
         Checks whether the view has the correct URL mapping.
         """
-        self.assertEquals(reverse('arty:add_category'), '/arty/add_category',
+        self.assertEquals(reverse('arty:add_category'), '/arty/add_category/',
                           f"{FAILURE_HEADER} URL mapping is either missing or mistyped.{FAILURE_FOOTER}")
 
 
@@ -560,7 +563,7 @@ class galleryPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -580,7 +583,7 @@ class galleryPageTests(TestCase):
         """
         Checks whether the view has the correct URL mapping.
         """
-        self.assertEquals(reverse('arty:galleries'), '/arty/gallery',
+        self.assertEquals(reverse('arty:galleries'), '/arty/gallery/',
                           f"{FAILURE_HEADER} URL mapping is either missing or mistyped.{FAILURE_FOOTER}")
 
 
@@ -591,7 +594,7 @@ class showGalleryPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -622,7 +625,7 @@ class showPiecePageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -653,7 +656,7 @@ class showPiecePageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -685,7 +688,7 @@ class showReviewPageTests(TestCase):
     """
 
     def setUp(self):
-        self.views_module = importlib.import_module('arty.views')
+        self.views_module = importlib.import_module('artyParty.views')
         self.views_module_listing = dir(self.views_module)
 
     def test_view_exists(self):
@@ -807,68 +810,68 @@ class TemplatesStructureTests(TestCase):
             self.assertTrue(os.path.isfile(joined_path),
                             f"{FAILURE_HEADER} {path} template does not exist, or is in the wrong location.{FAILURE_FOOTER}")
 
-class TemplateTests(TestCase):
-    """
-    A series of tests to ensure that the index page/view has been updated to work with templates.
-    Image tests are in the Chapter4StaticMediaTests suite.
-    """
-
-    def setUp(self):
-        self.response = self.client.get(reverse('artyParty:index'))
-        template_paths = ['about.html',
-                          'add_comments.html',
-                          'add_galleries.html',
-                          'add_pieces.html',
-                          'base.html',
-                          'contact_us.html',
-                          'galleries.html',
-                          'get_gallery_list.html',
-                          'get_piece_list.html',
-                          'homepage.html',
-                          'login.html',
-                          'manage_users.html',
-                          'myaccount.html',
-                          'piece.html',
-                          'pieces.html',
-                          'post.html',
-                          'sign_up.html']
-
-
-    def test_index_uses_template(self):
-        """
-        Checks whether the index view uses a template -- and the correct one!
-        """
-        self.assertTemplateUsed(self.response, 'artyParty/index.html',
-                                f"{FAILURE_HEADER}Your index() view does not use the expected index.html template.{FAILURE_FOOTER}")
-
-    def test_index_uses_context_dictionary(self):
-        """
-        Tests whether the index view uses the context dictionary correctly.
-        Crunchy, creamy cookie, anyone?
-        """
-        self.assertTrue('boldmessage' in self.response.context,
-                        f"{FAILURE_HEADER}In your index view, the context dictionary is not passing the boldmessage key. Check your context dictionary in the index() view, located in artyParty/views.py, and try again.{FAILURE_FOOTER}")
-
-        message = self.response.context['boldmessage']
-        expected = 'Crunchy, creamy, cookie, candy, cupcake!'
-        self.assertEqual(message, expected,
-                         f"{FAILURE_HEADER}The boldmessage being sent to the index.html template does not match what is expected. Check your index() view. Make sure you match up cases, and don't miss any punctuation! Even one missing character will cause the test to fail.{FAILURE_FOOTER}")
-
-    def test_index_starts_with_doctype(self):
-        """
-        Is the <!DOCTYPE html> declaration on the first line of the index.html template?
-        """
-        self.assertTrue(self.response.content.decode().startswith('<!DOCTYPE html>'),
-                        f"{FAILURE_HEADER}Your index.html template does not start with <!DOCTYPE html> -- this is requirement of the HTML specification.{FAILURE_FOOTER}")
-
-    def test_about_link_present(self):
-        """
-        Is the about hyperlink present and correct on the index.html template?
-        """
-        expected = "<a href=\"/artyParty/about/\">About</a><br />"
-        self.assertTrue(expected in self.response.content.decode(),
-                        f"{FAILURE_HEADER}Your index.html template doesn't contain the /artyParty/about/ link -- or it is not correct. Make sure you have the linebreak in, too!{FAILURE_FOOTER}")
-
+# class TemplateTests(TestCase):
+#     """
+#     A series of tests to ensure that the index page/view has been updated to work with templates.
+#     Image tests are in the Chapter4StaticMediaTests suite.
+#     """
+#
+#     def setUp(self):
+#         self.response = self.client.get(reverse('artyParty:index'))
+#         template_paths = ['about.html',
+#                           'add_comments.html',
+#                           'add_galleries.html',
+#                           'add_pieces.html',
+#                           'base.html',
+#                           'contact_us.html',
+#                           'galleries.html',
+#                           'get_gallery_list.html',
+#                           'get_piece_list.html',
+#                           'homepage.html',
+#                           'login.html',
+#                           'manage_users.html',
+#                           'myaccount.html',
+#                           'piece.html',
+#                           'pieces.html',
+#                           'post.html',
+#                           'sign_up.html']
+#
+#
+#     def test_index_uses_template(self):
+#         """
+#         Checks whether the index view uses a template -- and the correct one!
+#         """
+#         self.assertTemplateUsed(self.response, 'artyParty/index.html',
+#                                 f"{FAILURE_HEADER}Your index() view does not use the expected index.html template.{FAILURE_FOOTER}")
+#
+#     def test_index_uses_context_dictionary(self):
+#         """
+#         Tests whether the index view uses the context dictionary correctly.
+#         Crunchy, creamy cookie, anyone?
+#         """
+#         self.assertTrue('boldmessage' in self.response.context,
+#                         f"{FAILURE_HEADER}In your index view, the context dictionary is not passing the boldmessage key. Check your context dictionary in the index() view, located in artyParty/views.py, and try again.{FAILURE_FOOTER}")
+#
+#         message = self.response.context['boldmessage']
+#         expected = 'Crunchy, creamy, cookie, candy, cupcake!'
+#         self.assertEqual(message, expected,
+#                          f"{FAILURE_HEADER}The boldmessage being sent to the index.html template does not match what is expected. Check your index() view. Make sure you match up cases, and don't miss any punctuation! Even one missing character will cause the test to fail.{FAILURE_FOOTER}")
+#
+#     def test_index_starts_with_doctype(self):
+#         """
+#         Is the <!DOCTYPE html> declaration on the first line of the index.html template?
+#         """
+#         self.assertTrue(self.response.content.decode().startswith('<!DOCTYPE html>'),
+#                         f"{FAILURE_HEADER}Your index.html template does not start with <!DOCTYPE html> -- this is requirement of the HTML specification.{FAILURE_FOOTER}")
+#
+#     def test_about_link_present(self):
+#         """
+#         Is the about hyperlink present and correct on the index.html template?
+#         """
+#         expected = "<a href=\"/artyParty/about/\">About</a><br />"
+#         self.assertTrue(expected in self.response.content.decode(),
+#                         f"{FAILURE_HEADER}Your index.html template doesn't contain the /artyParty/about/ link -- or it is not correct. Make sure you have the linebreak in, too!{FAILURE_FOOTER}")
+#
 
 class ArtyStaticMediaTests(TestCase):
     """
@@ -888,14 +891,14 @@ class ArtyStaticMediaTests(TestCase):
         """
         does_static_dir_exist = os.path.isdir(self.static_dir)
         does_images_static_dir_exist = os.path.isdir(os.path.join(self.static_dir, 'images'))
-        does_artyParty_jpg_exist = os.path.isfile(os.path.join(self.static_dir, 'images', 'artyParty.jpg'))
+        #does_artyParty_jpg_exist = os.path.isfile(os.path.join(self.static_dir, 'images', 'artyParty.jpg'))
 
         self.assertTrue(does_static_dir_exist,
                         f"{FAILURE_HEADER}The static directory was not found in the expected location. Check the instructions in the book, and try again.{FAILURE_FOOTER}")
         self.assertTrue(does_images_static_dir_exist,
                         f"{FAILURE_HEADER}The images subdirectory was not found in your static directory.{FAILURE_FOOTER}")
-        self.assertTrue(does_artyParty_jpg_exist,
-                        f"{FAILURE_HEADER}We couldn't locate the artyParty.jpg image in the /static/images/ directory. If you think you've included the file, make sure to check the file extension. Sometimes, a JPG can have the extension .jpeg. Be careful! It must be .jpg for this test.{FAILURE_FOOTER}")
+        # self.assertTrue(does_artyParty_jpg_exist,
+        #                 f"{FAILURE_HEADER}We couldn't locate the artyParty.jpg image in the /static/images/ directory. If you think you've included the file, make sure to check the file extension. Sometimes, a JPG can have the extension .jpeg. Be careful! It must be .jpg for this test.{FAILURE_FOOTER}")
 
     def test_does_media_directory_exist(self):
         """
@@ -907,8 +910,6 @@ class ArtyStaticMediaTests(TestCase):
 
         self.assertTrue(does_media_dir_exist,
                         f"{FAILURE_HEADER}We couldn't find the /media/ directory in the expected location. Make sure it is in your project directory (at the same level as the manage.py module).{FAILURE_FOOTER}")
-        self.assertTrue(does_cat_jpg_exist,
-                        f"{FAILURE_HEADER}We couldn't find the cat.jpg image in /media/. Check the file extension; this is a common pitfall. It should .jpg. Not .png, .gif, or .jpeg!{FAILURE_FOOTER}")
 
     def test_static_and_media_configuration(self):
         """
@@ -969,64 +970,64 @@ class ArtyStaticMediaTests(TestCase):
                         f"{FAILURE_HEADER}The 'django.template.context_processors.media' context processor was not included. Check your settings.py module.{FAILURE_FOOTER}")
 
 
-class Chapter4ExerciseTests(TestCase):
-    """
-    A series of tests to ensure that the exercise listing at the end of Chapter 4 has been completed.
-    """
-
-    def setUp(self):
-        self.project_base_dir = os.getcwd()
-        self.template_dir = os.path.join(self.project_base_dir, 'templates', 'artyParty')
-        self.about_response = self.client.get(reverse('artyParty:about'))
-
-    def test_about_template_exists(self):
-        """
-        Tests the about template -- if it exists, and whether or not the about() view makes use of it.
-        """
-        template_exists = os.path.isfile(os.path.join(self.template_dir, 'about.html'))
-        self.assertTrue(template_exists,
-                        f"{FAILURE_HEADER}The about.html template was not found in the expected location.{FAILURE_FOOTER}")
-
-    def test_about_uses_template(self):
-        """
-        Checks whether the index view uses a template -- and the correct one!
-        """
-        self.assertTemplateUsed(self.about_response, 'artyParty/about.html',
-                                f"{FAILURE_HEADER}The about() view does not use the about.html template.{FAILURE_FOOTER}")
-
-    def test_about_starts_with_doctype(self):
-        """
-        Is the <!DOCTYPE html> declaration on the first line of the about.html template?
-        """
-        self.assertTrue(self.about_response.content.decode().startswith('<!DOCTYPE html>'),
-                        f"{FAILURE_HEADER}Your about.html template does not start with <!DOCTYPE html> -- this is requirement of the HTML specification.{FAILURE_FOOTER}")
-
-    def test_about_contains_required_text(self):
-        """
-        Checks to see whether the required text is on the rendered about page.
-        """
-        required = [
-            "here is the about page.",
-            "This tutorial has been put together by "
-        ]
-
-        for required_str in required:
-            self.assertTrue(required_str in self.about_response.content.decode(),
-                            f"{FAILURE_HEADER}The expected string '{required_str}' was not found in the rendered /artyParty/about/ response.{FAILURE_FOOTER}")
-
-    def test_about_contains_artyParty(self):
-        """
-        Checks whether the rendered about view has the picture of artyParty.
-        """
-        required_str = f"<img src=\"{settings.STATIC_URL}images/artyParty.jpg\" alt=\"Picture of artyParty\" />"
-        self.assertTrue(required_str in self.about_response.content.decode(),
-                        f"{FAILURE_HEADER}The HTML markup to include the image of artyParty in the about template was not found. It needs to match exactly what we are looking for. Check the book.{FAILURE_FOOTER}")
-
-    def test_about_contains_cat(self):
-        """
-        Checks whether the rendered about view has the picture of a cat.
-        We need to be a little bit lenient here as the example above includes a period, and in the exercise instructions, the required alt text is ended with a period. Either with or without is acceptable.
-        """
-        required_pattern = f"<img src=\"{settings.MEDIA_URL}cat.jpg\" alt=\"Picture of a Cat.?\" />"
-        self.assertTrue(re.search(required_pattern, self.about_response.content.decode()),
-                        f"{FAILURE_HEADER}The HTML markup to include the image of a cat in the about template was not found. It needs to match exactly what we are looking for. Check the book.{FAILURE_FOOTER}")
+# class Chapter4ExerciseTests(TestCase):
+#     """
+#     A series of tests to ensure that the exercise listing at the end of Chapter 4 has been completed.
+#     """
+#
+#     def setUp(self):
+#         self.project_base_dir = os.getcwd()
+#         self.template_dir = os.path.join(self.project_base_dir, 'templates', 'artyParty')
+#         self.about_response = self.client.get(reverse('artyParty:about'))
+#
+#     def test_about_template_exists(self):
+#         """
+#         Tests the about template -- if it exists, and whether or not the about() view makes use of it.
+#         """
+#         template_exists = os.path.isfile(os.path.join(self.template_dir, 'about.html'))
+#         self.assertTrue(template_exists,
+#                         f"{FAILURE_HEADER}The about.html template was not found in the expected location.{FAILURE_FOOTER}")
+#
+#     def test_about_uses_template(self):
+#         """
+#         Checks whether the index view uses a template -- and the correct one!
+#         """
+#         self.assertTemplateUsed(self.about_response, 'artyParty/about.html',
+#                                 f"{FAILURE_HEADER}The about() view does not use the about.html template.{FAILURE_FOOTER}")
+#
+#     def test_about_starts_with_doctype(self):
+#         """
+#         Is the <!DOCTYPE html> declaration on the first line of the about.html template?
+#         """
+#         self.assertTrue(self.about_response.content.decode().startswith('<!DOCTYPE html>'),
+#                         f"{FAILURE_HEADER}Your about.html template does not start with <!DOCTYPE html> -- this is requirement of the HTML specification.{FAILURE_FOOTER}")
+#
+#     def test_about_contains_required_text(self):
+#         """
+#         Checks to see whether the required text is on the rendered about page.
+#         """
+#         required = [
+#             "here is the about page.",
+#             "This tutorial has been put together by "
+#         ]
+#
+#         for required_str in required:
+#             self.assertTrue(required_str in self.about_response.content.decode(),
+#                             f"{FAILURE_HEADER}The expected string '{required_str}' was not found in the rendered /artyParty/about/ response.{FAILURE_FOOTER}")
+#
+#     def test_about_contains_artyParty(self):
+#         """
+#         Checks whether the rendered about view has the picture of artyParty.
+#         """
+#         required_str = f"<img src=\"{settings.STATIC_URL}images/artyParty.jpg\" alt=\"Picture of artyParty\" />"
+#         self.assertTrue(required_str in self.about_response.content.decode(),
+#                         f"{FAILURE_HEADER}The HTML markup to include the image of artyParty in the about template was not found. It needs to match exactly what we are looking for. Check the book.{FAILURE_FOOTER}")
+#
+#     def test_about_contains_cat(self):
+#         """
+#         Checks whether the rendered about view has the picture of a cat.
+#         We need to be a little bit lenient here as the example above includes a period, and in the exercise instructions, the required alt text is ended with a period. Either with or without is acceptable.
+#         """
+#         required_pattern = f"<img src=\"{settings.MEDIA_URL}cat.jpg\" alt=\"Picture of a Cat.?\" />"
+#         self.assertTrue(re.search(required_pattern, self.about_response.content.decode()),
+#                         f"{FAILURE_HEADER}The HTML markup to include the image of a cat in the about template was not found. It needs to match exactly what we are looking for. Check the book.{FAILURE_FOOTER}")
