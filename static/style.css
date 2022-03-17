@@ -1,8 +1,8 @@
 body {
     background-size: 40px 40px;
     background-image:
-    linear-gradient(to right, grey 1px, transparent 1px),
-    linear-gradient(to bottom, grey 1px, transparent 1px);
+        linear-gradient(to right, grey 1px, transparent 1px),
+        linear-gradient(to bottom, grey 1px, transparent 1px);
 
     /*background:*/
     /*    linear-gradient(-90deg, rgba(0, 0, 0, 1.03) 1px, transparent 1px),*/
@@ -67,7 +67,7 @@ body {
 }
 
 .navbar-nav{
-    background-blend-mode: inherit;
+    margin-left: 50%;
 }
 
 .info{
