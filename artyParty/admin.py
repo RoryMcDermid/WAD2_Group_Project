@@ -8,11 +8,11 @@ class UserAdmin(admin.ModelAdmin):
 
 class GalleryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('gallery_name',)}
-    list_display = ('gallery_id', 'user_id', 'gallery_name')
+    list_display = ('gallery_name', 'gallery_id', 'gallery_description', 'user_id')
 
 
 class PieceAdmin(admin.ModelAdmin):
-    list_display = ('piece_img', 'piece_id', 'gallery_id', 'piece_name', 'piece_category', 'user_id')
+    list_display = ('piece_img', 'piece_id', 'gallery_id', 'piece_name', 'author', 'period', 'user_id')
 
 
 class ReviewAdmin(admin.ModelAdmin):

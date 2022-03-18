@@ -17,9 +17,9 @@ class User(models.Model):
 class Gallery(models.Model):
     GALLERY_NAME_MAX_LENGTH = 50
 
+    gallery_name = models.CharField(max_length=GALLERY_NAME_MAX_LENGTH, blank=False)
     gallery_id = models.IntegerField(unique=True, blank=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    gallery_name = models.CharField(max_length=GALLERY_NAME_MAX_LENGTH, blank=False)
     gallery_description = models.TextField(blank=True)
     slug = models.SlugField(blank=True, unique=True)
 
@@ -37,12 +37,14 @@ class Gallery(models.Model):
 class Piece(models.Model):
     PIECE_NAME_MAX_LENGTH = 50
     PIECE_CATEGORY_MAX_LENGTH = 20
+    MAX_AUTHOR_LENGTH = 20
 
+    gallery_id = models.ForeignKey(Gallery, on_delete=models.CASCADE)
     piece_img = models.ImageField(blank=False, upload_to='artyParty_images')
     piece_id = models.IntegerField(unique=True, blank=False)
-    gallery_id = models.ForeignKey(Gallery, on_delete=models.CASCADE)
     piece_name = models.CharField(max_length=PIECE_NAME_MAX_LENGTH, blank=False)
-    piece_category = models.CharField(max_length=PIECE_CATEGORY_MAX_LENGTH, blank=False)
+    author = models.CharField(max_length=MAX_AUTHOR_LENGTH, blank=False)
+    period = models.CharField(max_length=PIECE_CATEGORY_MAX_LENGTH, blank=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
