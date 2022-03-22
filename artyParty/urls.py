@@ -2,11 +2,11 @@ from django.urls import path
 from artyParty import views
 
 
-app_name = 'Arty Party'
+app_name = 'arty'
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('login/', views.user_login, name='login'),
+    path('login/', views.login, name='login'),
     path('sign_up/', views.sign_up, name='sign_up'),
     path('about/', views.about, name='about'),
     path('contact_us/', views.contact_us, name='contact_us'),
@@ -16,10 +16,14 @@ urlpatterns = [
     path('my_account/manage_users', views.manage_users, name='manage_users'),
     path('my_account/edit_details', views.edit_details, name='edit_details'),
     path('my_account/posts', views.posts, name='posts'),
-    # path('category/', views.category, name='category'), <------ is this supposed to be here?
-    # path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
-    # path('add_category/', views.add_category, name='add_category'),
+    path('category/', views.category, name='category'), #<------ is this supposed to be here?
+    path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
+    path('add_category/', views.add_category, name='add_category'),
     path('gallery/', views.pieces, name='pieces'),
+    path('category/', views.category, name='category'),
+    path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
+    path('add_category/', views.add_category, name='add_category'),
+    path('gallery/', views.galleries, name='galleries'),
     path('gallery/<slug:gallery_name_slug>/', views.show_gallery, name='show_gallery'),
     path('gallery/<slug:gallery_name_slug>/<slug:piece_name_slug>/', views.show_piece, name='show_piece'),
     path('gallery/<slug:gallery_name_slug>/<slug:piece_name_slug>/<slug:review_name_slug>/', views.show_review,

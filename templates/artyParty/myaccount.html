@@ -11,7 +11,7 @@
         {% csrf_token %}
         <option value="Username">{{ user.Username }}</option>
         <br />
-        <label for="{{ user.Email}}">Email: </label>
+        <label for="{{ user.Email }}">Email: {{ user.Email }}</label>
         <br />
         <option value="Birthday"> </option>
         <br />
