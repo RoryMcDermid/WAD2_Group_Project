@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from artyParty.forms import UserForm, UserProfileForm
 
 
-from artyParty.models import Piece
+from artyParty.models import Piece, Gallery
 
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
@@ -233,9 +233,16 @@ def galleries(request):
 
 def show_gallery(request):
     ## see rango show_category
-    context_dict = {}
+    
+    # pieceDict = {}
+    # for piece in Piece:
+    #     pieceDict[piece.gallery_id.gallery_name] = piece
+    
+    gallery_list = Gallery.objects.order_by("gallery_id") #this 3 needs to be the length of gallery
+    # first_piece = if(Piece.gallery_id == Ga)
 
-    return render(request, 'artyParty/pieces.html', context=context_dict)
+    context_dict = {'galleries': gallery_list}
+    return render(request, 'artyParty/get_gallery_list.html', context=context_dict)
 
 
 
