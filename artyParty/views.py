@@ -202,10 +202,10 @@ def posts(request):
 # CATEGORIES MAYBE ADD LATER, BUT LIKE FUCK THAT RN - james
 
 
-def show_category(request):
-
-    #needs template
-    return HttpResponse("Add Piece")
+# def show_category(request):
+#
+#     #needs template
+#     return HttpResponse("Add Piece")
 
 
 def galleries(request):
@@ -219,9 +219,6 @@ def galleries(request):
 
 def show_gallery(request):
     ## see rango show_category
-    
-    pieceDict = {}
-    pieces_list = Piece.objects.all()
     
     
     gallery_list = Gallery.objects.order_by("gallery_id") #this 3 needs to be the length of gallery

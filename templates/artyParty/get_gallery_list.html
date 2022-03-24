@@ -11,6 +11,7 @@
         {% for g in galleries %}
         <li>
             <a href="">{{ g.gallery_name }}</a>
+            <img src="{{g.gallery_img.url}}"></img>
         </li>
         {% endfor %}
     {% else %}
