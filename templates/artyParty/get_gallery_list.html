@@ -1,11 +1,20 @@
-<ul>
-{% if galleries %}
-    {% for g in galleries %}
-    <li>
-        <a href="{% url 'arty:show_gallery' c_g.slug %}">{{ g.gallery_name }}</a>
-    </li>
-    {% endfor %}
-{% else %}
-    <li><strong>There are no galleries present.</strong></li>
-{% endif %}
-</ul>
+{% extends 'artyParty/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Galleries
+{% endblock %}
+
+{% block body_block %}
+    <ul>
+    {% if galleries %}
+        {% for g in galleries %}
+        <li>
+            <p>{{ g.gallery_name }}</p>
+        </li>
+        {% endfor %}
+    {% else %}
+        <li><strong>There are no galleries present.</strong></li>
+    {% endif %}
+    </ul>
+{% endblock %}

@@ -3,7 +3,10 @@ from django.http import HttpResponse
 
 from django.contrib.auth.decorators import login_required
 
-from artyParty.models import Piece
+#from rango.forms import UserForm, UserProfileForm
+
+
+from artyParty.models import Piece, Gallery
 
 #maybe rename this or homepage to have the same name?
 def home(request):
@@ -225,9 +228,9 @@ def galleries(request):
 
 def show_gallery(request):
     ## see rango show_category
-    context_dict = {}
-
-    return render(request, 'artyParty/pieces.html', context=context_dict)
+    gallery_list = Gallery.objects.order_by("gallery_id") #this 3 needs to be the length of gallery
+    context_dict = {'galleries': gallery_list}
+    return render(request, 'artyParty/get_gallery_list.html', context=context_dict)
 
 
 
