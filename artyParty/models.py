@@ -20,6 +20,7 @@ class Gallery(models.Model):
     gallery_name = models.CharField(max_length=GALLERY_NAME_MAX_LENGTH, blank=False)
     gallery_id = models.IntegerField(unique=True, blank=False)
     userID = models.ForeignKey(User, on_delete=models.CASCADE)
+    gallery_img = models.ImageField(blank=False, upload_to='artyParty_images')
     gallery_description = models.TextField(blank=True)
     slug = models.SlugField(blank=True, unique=True)
 
