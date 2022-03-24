@@ -87,3 +87,11 @@ body {
 .info p{
     padding-left: 10px;
 }
+
+.center_text{
+    text-align: center;
+}
+
+.form-group label{
+    font-size: medium;
+}
