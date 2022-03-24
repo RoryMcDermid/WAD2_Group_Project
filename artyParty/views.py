@@ -10,7 +10,7 @@ def home(request):
     # top 4 pieces ordered by popularity
     # change template to display them line 11
 
-
+    # need to change carosel to images from galleries
     #need to figure out how to sort by rating
     piece_list = Piece.objects.order_by('-piece_id')[:4]
 
@@ -69,14 +69,9 @@ def login(request):
 
 def sign_up(request):
 
-    ############################################################################
-    # A boolean value for telling the template
-    # whether the registration was successful.
-    # Set to False initially. Code changes value to
-    # True when registration succeeds.
+
     registered = False
 
-    # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
