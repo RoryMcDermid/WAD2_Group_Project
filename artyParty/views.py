@@ -181,7 +181,6 @@ def manage_users(request):
 
 @login_required
 def edit_details(request):
-    # ???????
 
     #needs template
     return HttpResponse("Edit details")
