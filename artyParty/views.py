@@ -1,12 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 from django.contrib.auth.decorators import login_required
 
-#from rango.forms import UserForm, UserProfileForm
+from artyParty.forms import UserForm, UserProfileForm
 
 
 from artyParty.models import Piece
+
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.urls import reverse
+from django.shortcuts import redirect
+
 
 #maybe rename this or homepage to have the same name?
 def home(request):
