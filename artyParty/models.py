@@ -7,7 +7,8 @@ class UserProfile(models.Model):
     USER_TYPE_MAX_LENGTH = 5
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    userID = models.IntegerField(unique=True, blank=False)
+    website = models.URLField(blank=True)
+    # userID = models.IntegerField(unique=True, blank=False) #Isn't this already in the django.contrib.auth.models import User
 
 
     def __str__(self):

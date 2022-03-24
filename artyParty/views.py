@@ -1,12 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 from django.contrib.auth.decorators import login_required
 
-#from rango.forms import UserForm, UserProfileForm
+from artyParty.forms import UserForm, UserProfileForm
 
 
 from artyParty.models import Piece, Gallery
+
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.urls import reverse
+from django.shortcuts import redirect
+
 
 #maybe rename this or homepage to have the same name?
 def home(request):
@@ -234,6 +239,8 @@ def show_gallery(request):
     #     pieceDict[piece.gallery_id.gallery_name] = piece
     
     gallery_list = Gallery.objects.order_by("gallery_id") #this 3 needs to be the length of gallery
+    # first_piece = if(Piece.gallery_id == Ga)
+
     context_dict = {'galleries': gallery_list}
     return render(request, 'artyParty/get_gallery_list.html', context=context_dict)
 
