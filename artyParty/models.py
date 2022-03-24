@@ -57,7 +57,7 @@ class Review(models.Model):
     piece_id = models.ForeignKey(Piece, on_delete=models.CASCADE, blank=False)
     rating = models.IntegerField(blank=False)
     userID = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
-    review = models.TextField
+    review = models.TextField()
 
     def __str__(self):
         return self.review_id
