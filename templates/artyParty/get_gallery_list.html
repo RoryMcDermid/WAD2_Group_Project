@@ -8,12 +8,12 @@
 {% block body_block %}
     <dev class="container">
         <div class="table-responsive">
-            <table class="table">
+            <table class="table logo">
                 <thead>
                     <tr>
                         <th class="col-sm-4">Gallery Image</th>
-                        <th>Gallery Name</th>
-                        <th>Gallery description</th>
+                        <th class="col-sm-4">Gallery Name</th>
+                        <th class="col-sm-4">Gallery description</th>
                     </tr>
                 </thead>
             {% if galleries %}
@@ -25,6 +25,9 @@
                     </td>
                     <td>
                         <a href="">{{ g.gallery_name }}</a>
+                    </td>
+                    <td>
+                        <p>{{ g.gallery_description }}</p>
                     </td>
                 </tr>
                 {% endfor %}
