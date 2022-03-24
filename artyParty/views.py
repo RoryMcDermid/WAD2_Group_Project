@@ -199,13 +199,8 @@ def posts(request):
     # context_dict = {'descript': data['extract']}
     # return render(request, "View Posts", context_dict)
 
-# CATEGORIES MAYBE ADD LATER, BUT LIKE FUCK THAT RN - james
 
 
-# def show_category(request):
-#
-#     #needs template
-#     return HttpResponse("Add Piece")
 
 
 def galleries(request):
