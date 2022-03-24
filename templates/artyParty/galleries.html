@@ -14,19 +14,20 @@
          aria-label="Search through site content">
         <button>Search</button>
       </form>
-</div class = "list_of_galleries">
+</div>
+<div class = "list_of_galleries">
 <!-- change if name in modelds/populate are difference  '-gallery- -name- -describe-' -->>
 <ul>
     {% if galleries %}
-        {% for g in categories %}
+        {% for g in galleries %}
             <li><a href="{% url 'arty:pieces' g.slug %}"><img src="" alt="image of gallery"></a></li>
-            <li>{{ gallery.name }}</li>
-            <li>{{ gallery.describe }}</li>
+            <li>{{ gallery.gallery_name }}</li>
+            <li>{{ gallery.gallery_description }}</li>
         {% endfor %}
     {% else %}
         <li><strong>There are no galleries present.</strong></li>
     {% endif %}
 </ul>
-
+</div>
 
 {% endblock %}

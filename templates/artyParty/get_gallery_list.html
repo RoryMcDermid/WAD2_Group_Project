@@ -2,7 +2,7 @@
 {% if galleries %}
     {% for g in galleries %}
     <li>
-        <a href="{% url 'arty:show_gallery' c_g.slug %}">{{ g.name }}</a>
+        <a href="{% url 'arty:show_gallery' c_g.slug %}">{{ g.gallery_name }}</a>
     </li>
     {% endfor %}
 {% else %}
