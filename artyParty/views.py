@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from artyParty.forms import UserForm, UserProfileForm
 
-import requests
+#import requests
 
 from artyParty.models import Piece, Gallery
 
@@ -22,10 +22,12 @@ def home(request):
     # need to change carosel to images from galleries
     #need to figure out how to sort by rating
     piece_list = Piece.objects.order_by('-piece_id')[:4]
+    galleries = Gallery.objects.all()
 
     context_dict = {}
 
     context_dict['pieces'] = piece_list
+    context_dict['gallery'] = galleries
 
     return render(request, 'artyParty/homepage.html', context=context_dict)
 

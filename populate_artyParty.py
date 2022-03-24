@@ -153,7 +153,7 @@ def populate():
                                          'pieces': kelvingrove_pieces,
                                          'gallery_img': 'k2.jpg'}}
 
-        user_dict = [{'user_id': 2563582, 'user_name': 'jnpawlowska123', 'user_type': True},
+    user_dict = [{'user_id': 2563582, 'user_name': 'jnpawlowska123', 'user_type': True},
              {'user_id': 2594321, 'user_name': 'leodastinki', 'user_type': True},
              {'user_id': 3678912, 'user_name': 'vinvangoth', 'user_type': True}]
 
@@ -161,7 +161,7 @@ def populate():
     print('Adding users...')
 
     for user in user_dict:
-        add_user(user['user_id'], user['user_name'], user['user_type'])
+        add_user_supertype(user['user_id'], user['user_name'], user['user_type'])
 
     users = User.objects.all()
     for user in users:
@@ -216,7 +216,7 @@ def add_review(review_id, piece_id, rating, userID, review):
     return r
 
 
-def add_user(user_id, user_name, user_type):
+def add_user_supertype(user_id, user_name, user_type):
     u = User.objects.get_or_create(id=user_id, username=user_name, is_superuser=user_type)
     return u
 
