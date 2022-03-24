@@ -234,6 +234,8 @@ def show_gallery(request):
     #     pieceDict[piece.gallery_id.gallery_name] = piece
     
     gallery_list = Gallery.objects.order_by("gallery_id") #this 3 needs to be the length of gallery
+    # first_piece = if(Piece.gallery_id == Ga)
+
     context_dict = {'galleries': gallery_list}
     return render(request, 'artyParty/get_gallery_list.html', context=context_dict)
 
