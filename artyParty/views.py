@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 
 
-#maybe rename this or homepage to have the same name?
+# maybe rename this or homepage to have the same name?
 def home(request):
     # top 4 pieces ordered by popularity
     # change template to display them line 11
@@ -25,8 +25,6 @@ def home(request):
     context_dict = {}
 
     context_dict['pieces'] = piece_list
-
-
 
     return render(request, 'artyParty/homepage.html', context=context_dict)
 
@@ -203,23 +201,36 @@ def posts(request):
 
 
 def galleries(request):
-    # querey db for all pieces where gallery == passed val
-    #
-    context_dict = {}
-
-    return render(request, 'artyParty/gallery.html', context=context_dict)
-
-
-
-def show_gallery(request):
     ## see rango show_category
-    
-    
-    gallery_list = Gallery.objects.order_by("gallery_id") #this 3 needs to be the length of gallery
+
+    gallery_list = Gallery.objects.order_by("gallery_id")  # this 3 needs to be the length of gallery
     # first_piece = if(Piece.gallery_id == Ga)
 
     context_dict = {'galleries': gallery_list}
     return render(request, 'artyParty/get_gallery_list.html', context=context_dict)
+
+
+
+
+def show_gallery(request, gallery_name_slug):
+    ## see rango show_category
+    # querey db for all pieces where gallery == passed val
+    #
+
+    context_dict = {}
+
+    try:
+        gallery = Gallery.objects.get(slug=gallery_name_slug)
+        pieces = Piece.objects.filter(gallery_id=gallery)
+        context_dict['pieces'] = pieces
+        context_dict['gallery'] = gallery
+
+    except Gallery.DoesNotExist:
+        context_dict['pieces'] = None
+        context_dict['gallery'] = None
+
+    return render(request, 'artyParty/gallery.html', context=context_dict)
+
 
 
 
