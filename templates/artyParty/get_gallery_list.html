@@ -6,16 +6,34 @@
 {% endblock %}
 
 {% block body_block %}
-    <ul>
-    {% if galleries %}
-        {% for g in galleries %}
-        <li>
-            <a href="">{{ g.gallery_name }}</a>
-            <img src="{{g.gallery_img.url}}"></img>
-        </li>
-        {% endfor %}
-    {% else %}
-        <li><strong>There are no galleries present.</strong></li>
-    {% endif %}
-    </ul>
+    <dev class="container">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-sm-4">Gallery Image</th>
+                        <th>Gallery Name</th>
+                        <th>Gallery description</th>
+                    </tr>
+                </thead>
+            {% if galleries %}
+                <tbody>
+                {% for g in galleries %}
+                <tr>
+                    <td>
+                        <img src="{{g.gallery_img.url}}" class="img-responsive"></img>
+                    </td>
+                    <td>
+                        <a href="">{{ g.gallery_name }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <li><strong>There are no galleries present.</strong></li>
+        {% endif %}
+        </table>
+    </dev>
 {% endblock %}
