@@ -228,8 +228,13 @@ def galleries(request):
 
 def show_gallery(request):
     ## see rango show_category
+    
+    pieceDict = {}
+    for piece in Piece:
+        pieceDict[piece.gallery_id.gallery_name] = piece
+    
     gallery_list = Gallery.objects.order_by("gallery_id") #this 3 needs to be the length of gallery
-    context_dict = {'galleries': gallery_list}
+    context_dict = {'galleries': gallery_list, 'pieces': pieceDict}
     return render(request, 'artyParty/get_gallery_list.html', context=context_dict)
 
 
