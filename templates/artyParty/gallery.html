@@ -2,7 +2,11 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Galleries               
+{% if gallery %}
+		{{ gallery.gallery_name }}
+	{% else %}
+		Unknown Gallery
+	{% endif %}
 {% endblock %}
 
 {% block body_block %}
@@ -17,17 +21,19 @@
 </div>
 <div class = "list_of_galleries">
 <!-- change if name in modelds/populate are difference  '-gallery- -name- -describe-' -->>
-<ul>
-    {% if galleries %}
-        {% for g in galleries %}
-            <li><a href="{% url 'arty:pieces' g.slug %}"><img src="" alt="image of gallery"></a></li>
-            <li>{{ gallery.gallery_name }}</li>
-            <li>{{ gallery.gallery_description }}</li>
+
+{% if gallery %}
+    <img src="" alt="image of gallery">
+    <h1>{{ gallery.gallery_name }}</h1>
+    <p>{{ gallery.gallery_description }}</p>
+    {% if pieces %}
+        {% for p in pieces %}
         {% endfor %}
-    {% else %}
-        <li><strong>There are no galleries present.</strong></li>
     {% endif %}
-</ul>
+{% else %}
+    <strong>There are no galleries present.</strong>
+{% endif %}
+
 </div>
 
 {% endblock %}

@@ -196,20 +196,6 @@ def posts(request):
 
 # CATEGORIES MAYBE ADD LATER, BUT LIKE FUCK THAT RN - james
 
-def category(request):
-    # show all pieces in given category
-    # query db for pieces where category == passed value
-
-
-    #needs template
-    return HttpResponse("Category (is)")
-
-
-@login_required
-def add_category(request):
-
-    #needs template
-    return HttpResponse("Add Category")
 
 def show_category(request):
 
@@ -222,7 +208,7 @@ def galleries(request):
     #
     context_dict = {}
 
-    return render(request, 'artyParty/galleries.html', context=context_dict)
+    return render(request, 'artyParty/gallery.html', context=context_dict)
 
 
 
