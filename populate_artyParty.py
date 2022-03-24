@@ -4,7 +4,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wad_2_team_project.settings')
 import django
 
 django.setup()
-from artyParty.models import Gallery, Piece, Review
+from artyParty.models import Gallery, Piece, Review, UserProfile
+from django.contrib.auth.models import User
+
+
 
 
 def populate():
@@ -147,38 +150,56 @@ def populate():
                                                                 'anyone can admire.',
                                          'pieces': kelvingrove_pieces}}
 
+    users = User.objects.all()
+    for user in users:
+        user_id = user.id
+        add_user(user, user_id)
+
+    print("Users done")
     # Goes through galls dictionary and adds each gallery
     # Then adds all the pieces in the gallery
     # and all the reviews for the pieces
     for gal, gal_data in galls.items():
-        g = add_galls(gal, gal_data['gallery_id'], gal_data['userID'], gal_data['gallery_description'])
+        user = UserProfile.objects.get(user_id=gal_data['userID']).user
+        print(f" Adding {gal}")
+        g = add_galls(gal, gal_data['gallery_id'], user, gal_data['gallery_description'])
         for p in gal_data['pieces']:
-            add_piece(g[0], p['piece_img'], p['piece_id'], p['piece_name'], p['author'],
-                      p['period'], p['userID'])
+            add_piece(g, p['piece_img'], p['piece_id'], p['piece_name'], p['author'],
+                      p['period'], UserProfile.objects.get(user_id=p['userID']).user)
             for r in p['reviews']:
-                add_review(r['review_id'], p['piece_id'], r['rating'], r['userID'], r['review'])
+                add_review(r['review_id'], Piece.objects.get(piece_id=p['piece_id']), r['rating'], UserProfile.objects.get(user_id=r['userID']).user, r['review'])
 
     # Print out the galleries we have added.
     for g in Gallery.objects.all():
-        for p in Piece.objects.filter(gallery=g):
-            print(f'- {g}: {p}')
+        for p in Piece.objects.filter(gallery_id=g):
+            print(f'- {g.gallery_name}: {p.piece_name}')
 
 
-def add_piece(gallery_id, piece_img, piece_id, piece_name, author, period, userID):
+def add_user(user, userID):
+    u = UserProfile.objects.get_or_create(user=user, userID=userID)[0]
+    u.save()
+    return u
+
+
+def add_piece(gallery_id, piece_img, piece_id, piece_name, author, period, user):
     p = Piece.objects.get_or_create(piece_img=piece_img, piece_id=piece_id, gallery_id=gallery_id,
-                                    piece_name=piece_name, author=author, period=period, userID=userID)
+                                    piece_name=piece_name, author=author, period=period, userID=user)[0]
+    p.save()
     return p
 
 
-def add_galls(gallery_name, gallery_id, userID, gallery_description):
-    g = Gallery.objects.get_or_create(gallery_name=gallery_name, gallery_id=gallery_id, userID=userID,
-                                      gallery_description=gallery_description)
+def add_galls(gallery_name, gallery_id, user, gallery_description):
+    g = Gallery.objects.get_or_create(gallery_name=gallery_name, gallery_id=gallery_id,
+                                      gallery_description=gallery_description, userID=user)[0]
+
+    g.save()
     return g
 
 
 def add_review(review_id, piece_id, rating, userID, review):
     r = Review.objects.get_or_create(review_id=review_id, piece_id=piece_id, rating=rating,
-                                     userID=userID, review=review)
+                                     userID=userID, review=review)[0]
+    r.save()
     return r
 
 
