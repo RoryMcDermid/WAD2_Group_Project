@@ -134,21 +134,24 @@ def populate():
                                'userID': 2563582,
                                'gallery_description': 'Impressive display of the finest Scottish art pieces, '
                                                       'situated at the University of Glasgow',
-                               'pieces': hunterian_pieces},
+                               'pieces': hunterian_pieces,
+                               'gallery_img': 'The-Hunterian-Museum.jpg'},
 
              'Gallery of Modern Art': {'gallery_id': 2,
                                        'userID': 2563582,
                                        'gallery_description': 'Located at the heart of Glasgow, the Gallery of '
                                                               'Modern Art houses immersive exhibits for enthusiasts '
                                                               'of modern art and anyone alike.',
-                                       'pieces': goma_pieces},
+                                       'pieces': goma_pieces,
+                                       'gallery_img': 'MODERN.jpg'},
 
              'Kelvingrove Art Gallery': {'gallery_id': 3,
                                          'userID': 2563582,
                                          'gallery_description': 'The Kelvingrove Art Gallery & Museum is home to a'
                                                                 ' wide range of pieces from a variety of periods that '
                                                                 'anyone can admire.',
-                                         'pieces': kelvingrove_pieces}}
+                                         'pieces': kelvingrove_pieces,
+                                         'gallery_img': 'k2.jpg'}}
 
     users = User.objects.all()
     for user in users:
@@ -162,7 +165,7 @@ def populate():
     for gal, gal_data in galls.items():
         user = UserProfile.objects.get(user_id=gal_data['userID']).user
         print(f" Adding {gal}")
-        g = add_galls(gal, gal_data['gallery_id'], user, gal_data['gallery_description'])
+        g = add_galls(gal, gal_data['gallery_id'], user, gal_data['gallery_description'], gal_data['gallery_img'])
         for p in gal_data['pieces']:
             add_piece(g, p['piece_img'], p['piece_id'], p['piece_name'], p['author'],
                       p['period'], UserProfile.objects.get(user_id=p['userID']).user)
@@ -188,9 +191,9 @@ def add_piece(gallery_id, piece_img, piece_id, piece_name, author, period, user)
     return p
 
 
-def add_galls(gallery_name, gallery_id, user, gallery_description):
+def add_galls(gallery_name, gallery_id, user, gallery_description, img):
     g = Gallery.objects.get_or_create(gallery_name=gallery_name, gallery_id=gallery_id,
-                                      gallery_description=gallery_description, userID=user)[0]
+                                      gallery_description=gallery_description, userID=user, gallery_img=img)[0]
 
     g.save()
     return g

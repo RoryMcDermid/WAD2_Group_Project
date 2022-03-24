@@ -8,7 +8,7 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     website = models.URLField(blank=True)
-    # userID = models.IntegerField(unique=True, blank=False) #Isn't this already in the django.contrib.auth.models import User
+    userID = models.IntegerField(unique=True, blank=False)
 
 
     def __str__(self):
