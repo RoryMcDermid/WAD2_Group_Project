@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-sm">
           <div class="container-fluid">
     {#        <div class= top_line>#}
-            <h1 class="logo">Arty Party</h1>
+            <h1 class="logo">Arty <br> Party</h1>
             <ul class="navbar-nav">
             {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'arty:my_account'%}">{{user.username}}</a></li>

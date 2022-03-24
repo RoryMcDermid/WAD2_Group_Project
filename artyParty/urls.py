@@ -17,7 +17,7 @@ urlpatterns = [
     path('my_account/edit_details', views.edit_details, name='edit_details'),
     path('my_account/posts', views.posts, name='posts'),
     path('galleries/', views.galleries, name='galleries'),
-    path('gallery/<slug:gallery_name_slug>/', views.show_gallery, name='show_gallery'),
-    path('gallery/<slug:gallery_name_slug>/<slug:piece_name_slug>/', views.show_piece, name='show_piece'),
-    path('gallery/<slug:gallery_name_slug>/<slug:piece_name_slug>/<slug:review_name_slug>/', views.show_review, name='show_review'),
+    path('galleries/<slug:gallery_name_slug>/', views.show_gallery, name='show_gallery'),
+    path('galleries/<slug:gallery_name_slug>/<slug:piece_name_slug>/', views.show_piece, name='show_piece'),
+    path('galleries/<slug:gallery_name_slug>/<slug:piece_name_slug>/<slug:review_name_slug>/', views.show_review, name='show_review'),
 ]

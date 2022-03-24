@@ -6,25 +6,24 @@
 {% endblock %}
 
 {% block body_block %}
-    <dev class="container">
-        <div class="table-responsive">
-            <table class="table logo">
-                <thead>
+    {% if galleries %}
+        <div class="container-fluid">
+            <table class="table well">
+                <thead class="opacity1">
                     <tr>
                         <th class="col-sm-4">Gallery Image</th>
                         <th class="col-sm-4">Gallery Name</th>
                         <th class="col-sm-4">Gallery description</th>
                     </tr>
                 </thead>
-            {% if galleries %}
-                <tbody>
+                <tbody class="opacity1">
                 {% for g in galleries %}
                 <tr>
                     <td>
                         <img src="{{g.gallery_img.url}}" class="img-responsive"></img>
                     </td>
                     <td>
-                        <a href="">{{ g.gallery_name }}</a>
+                        <a href="{{ g.slug }}/">{{ g.gallery_name }}</a>
                     </td>
                     <td>
                         <p>{{ g.gallery_description }}</p>
@@ -38,5 +37,5 @@
             <li><strong>There are no galleries present.</strong></li>
         {% endif %}
         </table>
-    </dev>
+    </div>
 {% endblock %}

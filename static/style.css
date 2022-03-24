@@ -64,6 +64,7 @@ body {
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    width: 180px;
 }
 
 .navbar-nav{
@@ -74,9 +75,6 @@ body {
     background-color: white;
     padding: 10px;
     margin: 20px;
-    /*margin-left: 20px;*/
-    /*margin-right: 20px;*/
-    /*margin-bottom: 20px;*/
     border: 1.5px solid black;
 }
 
@@ -94,4 +92,24 @@ body {
 
 .form-group label{
     font-size: medium;
+}
+
+.table{
+    overflow: hidden;
+}
+
+.well{
+    min-height: 20px;
+    padding: 19px;
+    /*color: blue;*/
+    background-color: rgba(255, 100, 100, 0.4);
+    /*(0, 0, 0, 0.5) if you are boring*/
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.opacity1{
+    opacity: 1;
 }
