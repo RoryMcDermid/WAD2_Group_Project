@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from artyParty.forms import UserForm, UserProfileForm
 
+import requests
 
 from artyParty.models import Piece, Gallery
 
@@ -224,6 +225,10 @@ def show_gallery(request, gallery_name_slug):
         pieces = Piece.objects.filter(gallery_id=gallery)
         context_dict['pieces'] = pieces
         context_dict['gallery'] = gallery
+        res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Mona_Lisa")
+        data = res.json()
+        extract = data['extract']
+        context_dict['extract'] = extract
 
     except Gallery.DoesNotExist:
         context_dict['pieces'] = None

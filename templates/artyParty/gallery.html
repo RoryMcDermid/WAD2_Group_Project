@@ -2,38 +2,61 @@
 {% load staticfiles %}
 
 {% block title_block %}
-{% if gallery %}
-		{{ gallery.gallery_name }}
-	{% else %}
-		Unknown Gallery
-	{% endif %}
+    {% if gallery %}
+        {{ gallery.gallery_name }}
+    {% else %}
+        Unknown Gallery
+    {% endif %}
 {% endblock %}
 
 {% block body_block %}
-<div class="search_bar">
-    <h2>Galleries</h2>
-    <form class="form" role="search">
-        <input type="search" class="query" name="q"
-         placeholder="Search..."
-         aria-label="Search through site content">
-        <button>Search</button>
-      </form>
-</div>
-<div class = "list_of_galleries">
-<!-- change if name in modelds/populate are difference  '-gallery- -name- -describe-' -->>
+    <div class="container">
+        <div class="search_bar">
+            <h2>Galleries</h2>
+            <form class="form" role="search">
+                <input type="search" class="query" name="q" placeholder="Search..." aria-label="Search through site content">
+                <button>Search</button>
+            </form>
+        </div>
+        <!--<div class = "list_of_galleries">-->
+        <!-- change if name in modelds/populate are difference  '-gallery- -name- -describe-' -->>
 
-{% if gallery %}
-    <img src="" alt="image of gallery">
-    <h1>{{ gallery.gallery_name }}</h1>
-    <p>{{ gallery.gallery_description }}</p>
-    {% if pieces %}
-        {% for p in pieces %}
-        {% endfor %}
-    {% endif %}
-{% else %}
-    <strong>There are no galleries present.</strong>
-{% endif %}
-
-</div>
-
+        {% if gallery %}
+            <img src="" alt="image of gallery">
+            <h1>{{ gallery.gallery_name }}</h1>
+            <p>{{ gallery.gallery_description }}</p>
+            {% if pieces %}
+                <div class="container-fluid">
+                    <table class="table well">
+                        <thead class="opacity1">
+                            <tr>
+                                <th class="col-sm-4">Art Piece Image</th>
+                                <th class="col-sm-4">Art Piece Name</th>
+                                <th class="col-sm-4">Art Piece description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="opacity1">
+                        {% for p in pieces %}
+                        <tr>
+                            <td>
+                                <img src="{{p.piece_img.url}}" class="img-responsive"></img>
+                            </td>
+                            <td>
+                                <p>{{ p.piece_name }}</p>
+                            </td>
+                            <td>
+                                <p>{{ extract }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <strong>There are no pieces present.</strong>
+            {% endif %}
+        {% else %}
+            <strong>There are no galleries present.</strong>
+        {% endif %}
+    </div>
 {% endblock %}
