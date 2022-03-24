@@ -3,6 +3,9 @@ from django.http import HttpResponse
 
 from django.contrib.auth.decorators import login_required
 
+#from rango.forms import UserForm, UserProfileForm
+
+
 from artyParty.models import Piece
 
 #maybe rename this or homepage to have the same name?
