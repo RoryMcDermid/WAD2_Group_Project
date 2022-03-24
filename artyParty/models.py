@@ -48,7 +48,7 @@ class Piece(models.Model):
     userID = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.piece_id
+        return self.piece_name
 
 
 class Review(models.Model):
