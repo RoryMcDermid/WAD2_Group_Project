@@ -17,9 +17,20 @@
     <div class="container">
         <div class="search_bar">
             <h2>Galleries</h2>
+            
             <div class="col-6 align-left">
-                <i id="search-icon" class="fas fa-search"></i>
-                <label for="user-input"></label><input id="user-input" placeholder="Search">
+                <form class="form-inline">
+                    <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
+                    <input  id="user-input" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search..." aria-label="Search">
+                </form>
+
+
+
+
+{#                <form class="form" role="search">#}
+{#                    <input type="search" class="query" name="q" id="user-input"placeholder="Search..." aria-label="Search for pieces">#}
+{#                    <button>Search</button>#}
+{#                </form>#}
             </div>
         </div>
 
