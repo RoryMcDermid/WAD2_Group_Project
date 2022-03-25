@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 
 # maybe rename this or homepage to have the same name?
@@ -203,16 +205,34 @@ def show_gallery(request, gallery_name_slug):
     # see rango show_category
     # querey db for all pieces where gallery == passed val
     context_dict = {}
+    url_parameter = request.GET.get("q")
 
     try:
-        gallery = Gallery.objects.get(slug=gallery_name_slug)
-        pieces = Piece.objects.filter(gallery_id=gallery)
+        if url_parameter:
+            gallery = Gallery.objects.get(slug=gallery_name_slug)
+            pieces = Piece.objects.filter(gallery_id=gallery).filter(piece_name=url_parameter)
+        else:
+            gallery = Gallery.objects.get(slug=gallery_name_slug)
+            pieces = Piece.objects.all()
         context_dict['pieces'] = pieces
         context_dict['gallery'] = gallery
         res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Mona_Lisa")
         data = res.json()
         extract = data['extract']
         context_dict['extract'] = extract
+
+        is_ajax_request = request.headers.get("x-requested-with") == "XMLHttpRequest" and does_req_accept_json
+
+        if is_ajax_request:
+            html = render_to_string(
+                template_name="pieces_results_partial.html",
+                context={"pieces": pieces}
+            )
+
+            data_dict = {"html_from_view": html}
+
+            return JsonResponse(data=data_dict, safe=False)
+
 
     except Gallery.DoesNotExist:
         context_dict['pieces'] = None
@@ -221,7 +241,7 @@ def show_gallery(request, gallery_name_slug):
     return render(request, 'artyParty/gallery.html', context=context_dict)
 
 
-def piece(request, gallery_name_slug, piece_name_slug):
+def piece(request, piece_name_slug, gallery_name_slug):
     ## see rango show_category
     context_dict = {}
     try:
@@ -236,7 +256,7 @@ def piece(request, gallery_name_slug, piece_name_slug):
     except Piece.DoesNotExist:
         context_dict['piece'] = None
     return render(request, 'artyParty/piece.html', context=context_dict)
-
+    # return HttpResponse("Showing " + piece_name_slug + " ")
 
 def show_review(request):
     ## see rango show_category
