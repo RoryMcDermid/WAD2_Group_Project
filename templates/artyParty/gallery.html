@@ -1,4 +1,4 @@
-{% extends 'artyParty/base.html' %}
+{% extends "artyParty/base.html" %}
 {% load staticfiles %}
 
 {% block title_block %}
@@ -13,46 +13,39 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="container">
-    <div class="search_bar">
-        <h2>Galleries</h2>
-        <form class="form" role="search">
-            <input type="search" class="query" name="q" placeholder="Search..." aria-label="Search through site content">
-            <button>Search</button>
-        </form>
-    </div>
+<script type="text/javascript" src="static/search.js"></script>
+<!--<link rel="stylesheet" href="../../static/style.css">-->
+<!--https://openfolder.sh/django-tutorial-as-you-type-search-with-ajax-->
+    <div class="container">
+        <div class="search_bar">
+            <h2>Galleries</h2>
+            <div class="col-6 align-left">
+                <i id="search-icon" class="fas fa-search"></i>
+                <label for="user-input"></label><input id="user-input" placeholder="Search">
+            </div>
+        </div>
 
-    {% if gallery %}
-        {% if pieces %}
-            <table class="table well">
-                <thead class="opacity1">
-                    <tr>
-                        <th class="col-sm-4">Art Piece Image</th>
-                        <th class="col-sm-4">Art Piece Name</th>
-                        <th class="col-sm-4">Art Piece description</th>
-                    </tr>
-                </thead>
-                <tbody class="opacity1">
-                {% for p in pieces %}
-                <tr>
-                    <td>
-                        <img src="{{p.piece_img.url}}" class="img-responsive" alt="img">
-                    </td>
-                    <td>
-                        <a href="{{ p.slug }}/">{{ p.piece_name }}</a>
-                    </td>
-                    <td>
-                        <p>{{ extract }}</p>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        {% if gallery %}
+            {% if pieces %}
+                <table class="table well">
+                    <thead class="opacity1">
+                        <tr>
+                            <th class="col-sm-4">Art Piece Image</th>
+                            <th class="col-sm-4">Art Piece Name</th>
+                            <th class="col-sm-4">Art Piece description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="opacity1">
+                        <div id="replaceable-content">
+                            {% include 'artyParty/pieces_results_partial.html' %}
+                        </div>
+                    </tbody>
+                </table>
+            {% else %}
+                <strong>There are no pieces present.</strong>
+            {% endif %}
         {% else %}
-            <strong>There are no pieces present.</strong>
+            <strong>There are no galleries present.</strong>
         {% endif %}
-    {% else %}
-        <strong>There are no galleries present.</strong>
-    {% endif %}
-</div>
+    </div>
 {% endblock %}
