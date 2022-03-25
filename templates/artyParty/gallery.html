@@ -13,8 +13,6 @@
 {% endblock %}
 
 {% block body_block %}
-chan<script type="text/javascript" src="{% static 'search.js' %}"></script>
-<!--<link rel="stylesheet" href="../../static/style.css">-->
 <!--https://openfolder.sh/django-tutorial-as-you-type-search-with-ajax-->
     <div class="container">
         <div class="search_bar">
@@ -27,7 +25,7 @@ chan<script type="text/javascript" src="{% static 'search.js' %}"></script>
 
         {% if gallery %}
             {% if pieces %}
-                <table class="table well">
+                <table class="table wells">
                     <thead class="opacity1">
                         <tr>
                             <th class="col-sm-4">Art Piece Image</th>

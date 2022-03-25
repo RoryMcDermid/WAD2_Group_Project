@@ -11,7 +11,11 @@
                     <a href="{{ p.slug }}/">{{ p.piece_name }}</a>
                 </td>
                 <td>
-                    <p>{{ extract }}</p>
+                    {% for key,value in ctx.items %}
+                        {% if key == p.slug %}
+                            <p> {{ value }}</p>
+                        {% endif %}
+                    {% endfor %}
                 </td>
             </tr>
         {% endfor %}
