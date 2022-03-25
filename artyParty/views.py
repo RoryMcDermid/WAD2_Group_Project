@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from artyParty.forms import UserForm, UserProfileForm
-import requests
+# import requests
 from artyParty.models import Piece, Gallery
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
@@ -29,7 +29,7 @@ def home(request):
     return render(request, 'artyParty/homepage.html', context=context_dict)
 
 
-def login(request):
+def user_login(request):
     # can we copy from rango?
 
     ############################################################################
@@ -56,7 +56,7 @@ def login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return redirect(reverse('artyParty:homepage.html'))
+                return redirect(reverse('arty:home'))
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your artyParty account is disabled.")
