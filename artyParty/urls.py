@@ -6,7 +6,7 @@ app_name = 'arty'
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('login/', views.login, name='login'),
+    path('login/', views.user_login, name='login'),
     path('sign_up/', views.sign_up, name='sign_up'),
     path('about/', views.about, name='about'),
     path('contact_us/', views.contact_us, name='contact_us'),
