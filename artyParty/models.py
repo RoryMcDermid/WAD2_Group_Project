@@ -48,6 +48,11 @@ class Piece(models.Model):
     author = models.CharField(max_length=MAX_AUTHOR_LENGTH, blank=False)
     period = models.CharField(max_length=PIECE_CATEGORY_MAX_LENGTH, blank=False)
     userID = models.ForeignKey(User, on_delete=models.CASCADE)
+    slug = models.SlugField(blank=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.piece_name)
+        super(Piece, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.piece_name
