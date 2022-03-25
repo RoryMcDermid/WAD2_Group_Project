@@ -70,7 +70,7 @@ def populate():
     ]
 
     goma_pieces = [
-        {'piece_img': 'nighthawks.jpeg',
+        {'piece_img': 'nighthawks.jpg',
          'piece_id': 2100,
          'piece_name': 'Nighthawks',
          'author': 'Edward Hopper',
@@ -78,7 +78,7 @@ def populate():
          'userID': 2563582,
          'reviews': nighthawks_revs
          },
-        {'piece_img': 'the-persistence-of-memory.jpeg',
+        {'piece_img': 'the-persistence-of-memory.jpg',
          'piece_id': 2200,
          'piece_name': 'The Persistence of Memory',
          'author': 'Salvador Dalí',
@@ -86,7 +86,7 @@ def populate():
          'userID': 2563582,
          'reviews': pers_of_mem_revs
          },
-        {'piece_img': 'the-kiss',
+        {'piece_img': 'the-kiss.jpg',
          'piece_id': 2300,
          'piece_name': 'The Kiss',
          'author': 'Gustav Klimt',
@@ -112,7 +112,7 @@ def populate():
     ]
 
     kelvingrove_pieces = [
-        {'piece_img': 'lady-with-ermine.jpeg',
+        {'piece_img': 'lady-with-ermine.jpg',
          'piece_id': 3100,
          'piece_name': 'Lady with an Ermine',
          'author': 'Leonardo Da Vinci',
@@ -120,7 +120,7 @@ def populate():
          'userID': 2563582,
          'reviews': lady_with_ermine_revs
          },
-        {'piece_img': 'girl-with-pearl.jpeg',
+        {'piece_img': 'girl-with-pearl.jpg',
          'piece_id': 3200,
          'piece_name': 'Girl with a Pearl Earring',
          'author': 'Johannes Vermeer',
