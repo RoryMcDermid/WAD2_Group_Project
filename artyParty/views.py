@@ -1,13 +1,8 @@
 from django.shortcuts import render
-
 from django.contrib.auth.decorators import login_required
-
 from artyParty.forms import UserForm, UserProfileForm
-
 import requests
-
 from artyParty.models import Piece, Gallery
-
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.urls import reverse
@@ -20,7 +15,7 @@ def home(request):
     # change template to display them line 11
 
     # need to change carosel to images from galleries
-    #need to figure out how to sort by rating
+    # need to figure out how to sort by rating
     piece_list = Piece.objects.order_by('-piece_id')[:4]
     galleries = Gallery.objects.all()
 
@@ -77,8 +72,6 @@ def login(request):
 
 
 def sign_up(request):
-
-
     registered = False
 
     if request.method == 'POST':
@@ -104,8 +97,6 @@ def sign_up(request):
             profile = profile_form.save(commit=False)
             profile.user = user
 
-
-
             # Now we save the UserProfile model instance.
             profile.save()
 
@@ -123,7 +114,8 @@ def sign_up(request):
         profile_form = UserProfileForm()
 
     # Render the template depending on the context.
-    return render(request, 'artyParty/sign_up.html', context = {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
+    return render(request, 'artyParty/sign_up.html',
+                    context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
     ############################################################################
 
 
@@ -142,15 +134,14 @@ def contact_us(request):
 
     return render(request, 'artyParty/contact_us.html', context=context_dict)
 
+
 @login_required
 def my_account(request):
     # @loginrequired decorator
     #
     context_dict = {}
 
-
-
-    #context_dict[''] =
+    # context_dict[''] =
 
     return render(request, 'artyParty/myaccount.html', context=context_dict)
 
@@ -171,7 +162,6 @@ def add_gallery(request):
     return render(request, 'artyParty/add_galleries.html', context=context_dict)
 
 
-
 @login_required
 def manage_users(request):
     # for power users
@@ -182,8 +172,7 @@ def manage_users(request):
 
 @login_required
 def edit_details(request):
-
-    #needs template
+    # needs template
     return HttpResponse("Edit details")
 
 
@@ -200,9 +189,6 @@ def posts(request):
     # return render(request, "View Posts", context_dict)
 
 
-
-
-
 def galleries(request):
     ## see rango show_category
 
@@ -213,13 +199,9 @@ def galleries(request):
     return render(request, 'artyParty/get_gallery_list.html', context=context_dict)
 
 
-
-
 def show_gallery(request, gallery_name_slug):
-    ## see rango show_category
+    # see rango show_category
     # querey db for all pieces where gallery == passed val
-    #
-
     context_dict = {}
 
     try:
@@ -239,26 +221,25 @@ def show_gallery(request, gallery_name_slug):
     return render(request, 'artyParty/gallery.html', context=context_dict)
 
 
-
-
-def show_piece(request):
+def piece(request, gallery_name_slug, piece_name_slug):
     ## see rango show_category
     context_dict = {}
+    try:
+        p = Piece.objects.get(slug=piece_name_slug)
+        gallery = Gallery.objects.get(slug=gallery_name_slug)
+        context_dict['piece'] = p
+        context_dict['gallery'] = gallery
+        res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Mona_Lisa")
+        data = res.json()
+        context_dict['extract'] = data
 
-    # return render(request, 'artyParty/post.html', context=context_dict)
-
-    res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Christ_of_Saint_John_of_the_Cross")
-    data = res.json()
-    context_dict = {'descript': data['extract']}
-    # return render(request, "View Posts", context_dict)
-
-    return render(request, 'artyParty/post.html', context=context_dict)
-
+    except Piece.DoesNotExist:
+        context_dict['piece'] = None
+    return render(request, 'artyParty/piece.html', context=context_dict)
 
 
 def show_review(request):
     ## see rango show_category
 
-    #which template is this?
+    # which template is this?
     return HttpResponse("Showing Review")
-

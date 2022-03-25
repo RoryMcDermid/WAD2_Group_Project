@@ -6,37 +6,37 @@
         {{ piece.name }}
     {% else %}
         Unknown Piece
-    {% endif %}     
+    {% endif %}
 {% endblock %}
 
 {% block extral_index_block %}
-<li><a href="{% url 'arty:pieces' %}">Homepage</a></li>
+<!--<li><a href="{% url 'arty:piece' %}">Homepage</a></li>-->
 {% endblock %}
 
 {% block body_block %}
-<div>
-    {% if piece %}
-    <h1>{{ piece.name }}</h1>
-    <hr>
-    <!-- changed if name in models/populate are difference  '-piece- -pieces- -image_url-' -->>
-    
-    <img src="{{ piece.image_url }}" alt="{{ piece.name }}">
-    <ul class = "piece_basic_information">
-        <li>name: {{ piece.name }}</li>
-        <li>author: {{ piece.author }}</li>
-        <li>date: {{ piece.date }}</li>
-        <li>background: {{ piece.background }}</li>
-        <li>wiki link: {{ piece.wiki_link }}</li>
-    </ul>
+    <div>
+        {% if piece %}
+            <h1>{{ piece.name }}</h1>
+            <hr>
+            <!-- changed if name in models/populate are difference  '-piece- -pieces- -image_url-' -->>
 
-    <h4>Comments</h4>
-    {% if user.is_authenticated %}
-    <a href="{% url 'rango:add_review' gallary.slug %}">Add Review</a> <br />
-    {% endif %}
-    {{ piece.comments }}
-    {% else %}
-    The specified piece does not exist.
-    {% endif %}
-    
-</div>
+            <img src="{{ piece.image_url.url }}" alt="{{ piece.name }}">
+            <ul class = "piece_basic_information">
+                <li>name: {{ piece.name }}</li>
+                <li>author: {{ piece.author }}</li>
+                <li>date: {{ piece.date }}</li>
+                <li>background: {{ piece.background }}</li>
+                <li>wiki link: {{ piece.wiki_link }}</li>
+            </ul>
+
+            <h4>Comments</h4>
+            {% if user.is_authenticated %}
+            <a href="{% url 'rango:add_review' gallary.slug %}">Add Review</a> <br />
+            {% endif %}
+            {{ piece.comments }}
+        {% else %}
+            The specified piece does not exist.
+        {% endif %}
+
+    </div>
 {% endblock %}
