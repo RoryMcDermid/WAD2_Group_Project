@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from artyParty.forms import UserForm, UserProfileForm
-# import requests
+import requests
 from artyParty.models import Piece, Gallery
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
