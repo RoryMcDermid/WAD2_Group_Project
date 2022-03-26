@@ -2,38 +2,56 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    {% if piece %}
-        {{ piece.name }}
-    {% else %}
-        Unknown Piece
+    {% if piece %}{{ piece.piece_name }}{% else %}
+    Unknown Piece
     {% endif %}
 {% endblock %}
 
 {% block extral_index_block %}
-<li><a href="{% url 'arty:show_gallery' gallery.slug %}">Pieces in {{ gallery.gallery_name }}</a></li>
+    <li><a href="{% url 'arty:show_gallery' gallery.slug %}">{{ gallery.gallery_name }}</a></li>
+    <li><a href="{% url 'arty:piece' gallery.slug piece.slug %}">{{ piece.piece_name }}</a></li>
 {% endblock %}
 
 {% block body_block %}
-    <div>
+    <div class="container">
         {% if piece %}
-            <h1>{{ piece.name }}</h1>
-            <hr>
-            <!-- changed if name in models/populate are difference  '-piece- -pieces- -image_url-' -->>
+            <div class="row">
+                <h1>{{ piece.piece_name }}</h1>
+                <hr>
 
-            <img src="{{ piece.image_url.url }}" alt="{{ piece.name }}">
-            <ul class = "piece_basic_information">
-                <li>name: {{ piece.name }}</li>
-                <li>author: {{ piece.author }}</li>
-                <li>date: {{ piece.date }}</li>
-                <li>background: {{ piece.background }}</li>
-                <li>wiki link: {{ piece.wiki_link }}</li>
-            </ul>
+                <div class="col-sm-4 list-group">
+                    <ul class = "">
+                        <li class="list-group-item">Name: <span class="badge">{{ piece.piece_name }}</span></li>
+                        <li class="list-group-item">author: <span class="badge">{{ piece.author }}</span></li>
+                        <li class="list-group-item">date: <span class="badge">{{ piece.period }}</span></li>
+                    </ul>
 
-            <h4>Comments</h4>
-            {% if user.is_authenticated %}
-            <a href="{% url 'rango:add_review' gallary.slug %}">Add Review</a> <br />
-            {% endif %}
-            {{ piece.comments }}
+                    <div class="wells">
+                        <p class="description">{{ extract }}</p>
+                    </div>
+                </div>
+                <img src="{{piece.piece_img.url}}" alt="piece image" class="col-sm-8">
+            </div>
+            <br>
+            <div class="wells">
+                <div class="row">
+                    <h4 class="col-sm-6">Comments</h4>
+                    {% if user.is_authenticated %}
+                        <a class="col-sm-6" href="{% url 'rango:add_review' gallary.slug %}">Add Review</a> <br />
+                    {% endif %}
+                </div>
+                {% if reviews %}
+                    <div class="container">
+                        {% for review in reviews %}
+                            <div class="wells less_wide row">
+                                <span class="badge col-sm-1 big">{{ review.rating }}</span>
+                                <p class="col-sm-10 blue">{{ review.review }}</p>
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
         {% else %}
             The specified piece does not exist.
         {% endif %}

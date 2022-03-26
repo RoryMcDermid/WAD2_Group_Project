@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from artyParty.forms import UserForm, UserProfileForm, EditUserForm
 import requests
-from artyParty.models import Piece, Gallery
+from artyParty.models import Piece, Gallery, Review
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.urls import reverse
@@ -270,9 +270,12 @@ def piece(request, gallery_name_slug, piece_name_slug):
         gallery = Gallery.objects.get(slug=gallery_name_slug)
         context_dict['piece'] = p
         context_dict['gallery'] = gallery
-        res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Mona_Lisa")
+        res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/{}".format(p.slug.replace("-", "_")))
         data = res.json()
-        context_dict['extract'] = data
+        extract = data['extract']
+        context_dict['extract'] = extract
+        review = Review.objects.filter(piece_id_id=p)
+        context_dict['reviews'] = review
 
     except Piece.DoesNotExist:
         context_dict['piece'] = None

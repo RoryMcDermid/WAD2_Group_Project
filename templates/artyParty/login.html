@@ -6,25 +6,23 @@
 {% endblock %}
 
 {% block body_block %}
-<img src="" alt="">
-<form id="login_form" method="post" action="{% url 'arty:login' %}">
-    {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
+    <img src="" alt="">
+    <form id="login_form" method="post" action="{% url 'arty:login' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Email: <input type="email" name="email" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
+        <input type="submit" value="submit" />
+    </form>
+    <button>
+        <a class="a_reset" href="{% url 'arty:sign_up' %}">Sign Up</a>
+    </button>
     <br />
-    Email: <input type="email" name="email" value="" size="50" />
-    <br />
-    Password: <input type="password" name="password" value="" size="50" />
-    <br />
-    <input type="submit" value="submit" />
-</form>
-<button>
-    <a class="a_reset" href="{% url 'arty:sign_up' %}">Sign Up</a>
-</button>
-<br />
-<button>
-    <a class="a_reset" href="{% url 'arty:home' %}">Back to home page</a>
-</button>
-
-
-<img src="" alt="">
+    <button>
+        <a class="a_reset" href="{% url 'arty:home' %}">Back to home page</a>
+    </button>
+    <img src="" alt="">
 {% endblock %}  
