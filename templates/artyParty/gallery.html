@@ -13,17 +13,6 @@
 {% endblock %}
 
 {% block body_block %}
-    <script>
-        $(document).ready(function(){
-            $("#user-input").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-    </script>
-<!--https://openfolder.sh/django-tutorial-as-you-type-search-with-ajax-->
     <div class="container">
         <div class="search_bar">
             <h2>{{ gallery.gallery_name }}</h2>
@@ -40,7 +29,6 @@
                 <form class="form-inline" role="search">
                     <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
                     <input type="text" class="form-control form-control-sm ml-3 w-75" name="q" id="user-input" placeholder="Search..." aria-label="Search for pieces">
-                    <button class="">Search</button>
                 </form>
             </div>
         </div>

@@ -1,12 +1,13 @@
 {% extends 'artyParty/base.html' %}
+{#{% url 'arty:piece' gallery_name_slug=gallery_name_slug piece_name_slug=piece_name_slug %}#}
 {% load staticfiles %}
 
 {% block title_block %}
-    {% if gallery %}
-        {{ gallery.name }}
+    {% if piece %}
+        {{ piece.piece_name }}
     {% else %}
         Unknown Gallery
-    {% endif %}     
+    {% endif %}
 {% endblock %}
 
 {% block extral_index_block %}

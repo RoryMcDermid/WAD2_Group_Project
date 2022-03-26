@@ -8,7 +8,8 @@
                     <img src="{{p.piece_img.url}}" class="img-responsive" alt="img">
                 </td>
                 <td>
-                    <a href="{{ p.slug }}/">{{ p.piece_name }}</a>
+{#                    <a href="{{ p.slug }}/">{{ p.piece_name }} </a>#}
+                    <a href="{% url 'arty:piece' gallery_name_slug=gallery.slug piece_name_slug=p.slug %}">{{ p.piece_name }}</a>
                 </td>
                 <td>
                     {% for key,value in ctx.items %}

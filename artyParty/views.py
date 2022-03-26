@@ -125,7 +125,7 @@ def sign_up(request):
 
     # Render the template depending on the context.
     return render(request, 'artyParty/sign_up.html',
-                    context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
+                  context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
     ############################################################################
 
 
@@ -241,18 +241,12 @@ def show_gallery(request, gallery_name_slug):
     # see rango show_category
     # querey db for all pieces where gallery == passed val
     context_dict = {}
-    url_parameter = request.GET.get("q")
-
     try:
-        if url_parameter:
-            gallery = Gallery.objects.get(slug=gallery_name_slug)
-            pieces = Piece.objects.filter(gallery_id=gallery).filter(piece_name=url_parameter)
-        else:
-            gallery = Gallery.objects.get(slug=gallery_name_slug)
-            pieces = Piece.objects.filter(gallery_id=gallery)
+        gallery = Gallery.objects.get(slug=gallery_name_slug)
+        pieces = Piece.objects.filter(gallery_id=gallery)
         context_dict['pieces'] = pieces
         context_dict['gallery'] = gallery
-        ctx ={}
+        ctx = {}
         for p in pieces:
             link = "https://en.wikipedia.org/api/rest_v1/page/summary/{}".format(p.slug.replace("-", "_"))
             res = requests.get(link)
@@ -261,16 +255,6 @@ def show_gallery(request, gallery_name_slug):
             ctx[p.slug] = extract
         context_dict['ctx'] = ctx
 
-        is_ajax_request = request.headers.get("x-requested-with") == "XMLHttpRequest" and does_req_accept_json
-
-        if is_ajax_request:
-            html = render_to_string(
-                template_name="{% artyParty 'pieces_results_partial.html' %}",
-                context={"pieces": pieces, "gallery": gallery, 'ctx': ctx}
-            )
-            data_dict = {"html_from_view": html}
-            return JsonResponse(data=data_dict, safe=False)
-
     except Gallery.DoesNotExist:
         context_dict['pieces'] = None
         context_dict['gallery'] = None
@@ -278,7 +262,7 @@ def show_gallery(request, gallery_name_slug):
     return render(request, 'artyParty/gallery.html', context=context_dict)
 
 
-def piece(request, piece_name_slug, gallery_name_slug):
+def piece(request, gallery_name_slug, piece_name_slug):
     ## see rango show_category
     context_dict = {}
     try:
@@ -292,8 +276,10 @@ def piece(request, piece_name_slug, gallery_name_slug):
 
     except Piece.DoesNotExist:
         context_dict['piece'] = None
+        context_dict['gallery'] = None
     return render(request, 'artyParty/piece.html', context=context_dict)
-    # return HttpResponse("Showing " + piece_name_slug + " ")
+    # return HttpResponse("Showing " + piece_name_slug + " " +gallery_name_slug)
+
 
 def show_review(request):
     ## see rango show_category
