@@ -274,8 +274,7 @@ def piece(request, gallery_name_slug, piece_name_slug):
         data = res.json()
         extract = data['extract']
         context_dict['extract'] = extract
-        # reviews = Review.objects.filter(piece_id_id=p)
-        reviews = Review.objects.all()
+        reviews = Review.objects.filter(piece_id_id=p)
         context_dict['reviews'] = reviews
         r = {}
         for review in reviews:
@@ -286,8 +285,6 @@ def piece(request, gallery_name_slug, piece_name_slug):
         context_dict['piece'] = None
         context_dict['gallery'] = None
     return render(request, 'artyParty/piece.html', context=context_dict)
-    # return HttpResponse("Showing " + piece_name_slug + " " +gallery_name_slug)
-
 
 def show_review(request):
     ## see rango show_category
