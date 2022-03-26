@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block extral_index_block %}
-<!--<li><a href="{% url 'arty:piece' %}">Homepage</a></li>-->
+<li><a href="{% url 'arty:show_gallery' gallery.slug %}">Pieces in {{ gallery.gallery_name }}</a></li>
 {% endblock %}
 
 {% block body_block %}
