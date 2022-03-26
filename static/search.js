@@ -1,7 +1,7 @@
 const user_input = $("#user-input")
 const search_icon = $('#search-icon')
 const galleries_div = $('#replaceable-content')
-const endpoint = 'galleries/the-hunterian/'
+const endpoint = 'http://127.0.0.1:8000/arty/galleries/the-hunterian'
 const delay_by_in_ms = 700
 let scheduled_function = false
 

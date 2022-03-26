@@ -13,21 +13,41 @@
 {% endblock %}
 
 {% block body_block %}
-chan<script type="text/javascript" src="{% static 'search.js' %}"></script>
-<!--<link rel="stylesheet" href="../../static/style.css">-->
+    <script>
+        $(document).ready(function(){
+            $("#user-input").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 <!--https://openfolder.sh/django-tutorial-as-you-type-search-with-ajax-->
     <div class="container">
         <div class="search_bar">
             <h2>Galleries</h2>
+            
             <div class="col-6 align-left">
-                <i id="search-icon" class="fas fa-search"></i>
-                <label for="user-input"></label><input id="user-input" placeholder="Search">
+{#                <form class="form-inline">#}
+{#                    <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>#}
+{#                    <input  id="user-input" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search..." aria-label="Search">#}
+{#                </form>#}
+
+
+
+
+                <form class="form-inline" role="search">
+                    <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
+                    <input type="text" class="form-control form-control-sm ml-3 w-75" name="q" id="user-input" placeholder="Search..." aria-label="Search for pieces">
+                    <button class="">Search</button>
+                </form>
             </div>
         </div>
 
         {% if gallery %}
             {% if pieces %}
-                <table class="table well">
+                <table class="table wells">
                     <thead class="opacity1">
                         <tr>
                             <th class="col-sm-4">Art Piece Image</th>
@@ -35,7 +55,7 @@ chan<script type="text/javascript" src="{% static 'search.js' %}"></script>
                             <th class="col-sm-4">Art Piece description</th>
                         </tr>
                     </thead>
-                    <tbody class="opacity1">
+                    <tbody class="opacity1" id="myTable">
                         <div id="replaceable-content">
                             {% include 'artyParty/pieces_results_partial.html' %}
                         </div>

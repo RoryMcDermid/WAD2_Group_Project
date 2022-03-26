@@ -249,26 +249,27 @@ def show_gallery(request, gallery_name_slug):
             pieces = Piece.objects.filter(gallery_id=gallery).filter(piece_name=url_parameter)
         else:
             gallery = Gallery.objects.get(slug=gallery_name_slug)
-            pieces = Piece.objects.all()
+            pieces = Piece.objects.filter(gallery_id=gallery)
         context_dict['pieces'] = pieces
         context_dict['gallery'] = gallery
-        res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Mona_Lisa")
-        data = res.json()
-        extract = data['extract']
-        context_dict['extract'] = extract
+        ctx ={}
+        for p in pieces:
+            link = "https://en.wikipedia.org/api/rest_v1/page/summary/{}".format(p.slug.replace("-", "_"))
+            res = requests.get(link)
+            data = res.json()
+            extract = data['extract']
+            ctx[p.slug] = extract
+        context_dict['ctx'] = ctx
 
         is_ajax_request = request.headers.get("x-requested-with") == "XMLHttpRequest" and does_req_accept_json
 
         if is_ajax_request:
             html = render_to_string(
-                template_name="pieces_results_partial.html",
-                context={"pieces": pieces}
+                template_name="{% artyParty 'pieces_results_partial.html' %}",
+                context={"pieces": pieces, "gallery": gallery, 'ctx': ctx}
             )
-
             data_dict = {"html_from_view": html}
-
             return JsonResponse(data=data_dict, safe=False)
-
 
     except Gallery.DoesNotExist:
         context_dict['pieces'] = None
