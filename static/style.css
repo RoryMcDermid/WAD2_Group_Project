@@ -138,27 +138,10 @@ body {
     text-decoration: none;
 }
 
-.thicc{
-        width: 100%;
-        height: 30px;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: #b7d0e2;
-}
-
-.description{
-    max-height: max-content;
-    color: aqua;
-}
-
 .less_wide{
-    width: 300px;
+    margin-left: 5%;
 }
 
-.big{
-    font-size: larger;
-}
-
-.blue{
-    color: blue;
+.list-group-item:not(:last-child){
+    height: 60px;
 }

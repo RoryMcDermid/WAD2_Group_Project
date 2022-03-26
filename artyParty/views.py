@@ -274,8 +274,13 @@ def piece(request, gallery_name_slug, piece_name_slug):
         data = res.json()
         extract = data['extract']
         context_dict['extract'] = extract
-        review = Review.objects.filter(piece_id_id=p)
-        context_dict['reviews'] = review
+        # reviews = Review.objects.filter(piece_id_id=p)
+        reviews = Review.objects.all()
+        context_dict['reviews'] = reviews
+        r = {}
+        for review in reviews:
+            r[review.review_id] = range(review.rating)
+        context_dict['range'] = r
 
     except Piece.DoesNotExist:
         context_dict['piece'] = None
