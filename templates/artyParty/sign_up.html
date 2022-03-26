@@ -6,17 +6,36 @@
 {% endblock %}
 
 {% block body_block %}
-{% if registered %}
-<a href="{% url 'arty:home' %}">Return to the homepage.</a><br />
-{% else %}
-<strong>Sign in</strong><br />
-<form id="user_form" method="post" action="{% url 'arty:sign_up' %}" enctype="multipart/form-data">
+    {% if registered %}
+        <a href="{% url 'arty:home' %}">Return to the homepage.</a><br />
+    {% else %}
 
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-
-    <input type="submit" name="submit" value="sign up" />
-</form>
-{% endif %}
+        <div class="container wells">
+            <h1><strong>Sign Up</strong></h1><br />
+            <form id="user_form" method="post" action="{% url 'arty:sign_up' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="csrfmiddlewaretoken" value="phoNWheQU0n9yqnbRSSwv1zSwIuFfyUjJnCyVMRl8g0DPqtSc7Ml0ml1o5rq6igL">
+                <div class ="form-group">
+                    <label for="id_username">Username:</label>
+                    <input type="text" class="form-control" name="username" value="" size="50" maxlength="150" required id="id_username" /><span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                </div>
+                <div class ="form-group">
+                    <label for="id_email">Email:</label>
+                    <input type="email" maxlength="254"  class="form-control" name="email" value="" size="50" id="id_email" />
+                </div>
+                <div class ="form-group">
+                    <label for="id_password">Password:</label>
+                    <input type="password" class="form-control" name="password" value="" size="50" required id="id_password"/>
+                </div>
+                <input type="submit" class="btn btn-default" value="sign up" />
+                <button class="btn btn-default">
+                    <a class="a_reset" class="btn btn-default" href="{% url 'arty:login' %}">Login</a>
+                </button>
+                <br />
+                <button class="btn btn-default">
+                    <a class="a_reset" href="{% url 'arty:home' %}">Back to home page</a>
+                </button>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}
