@@ -9,25 +9,33 @@
 
 <!--proof of concept for breadcrumb trail-->
 {% block extral_index_block %}
-<!--    <li><a href="{% url 'arty:galleries' %}">Galleries</a></li>-->
+<li><a href="{% url 'arty:show_gallery' gallery.slug %}">Pieces in {{ gallery.gallery_name }}</a></li>
 {% endblock %}
 
 {% block body_block %}
-<script type="text/javascript" src="static/search.js"></script>
-<!--<link rel="stylesheet" href="../../static/style.css">-->
-<!--https://openfolder.sh/django-tutorial-as-you-type-search-with-ajax-->
     <div class="container">
         <div class="search_bar">
-            <h2>Galleries</h2>
+            <h2>{{ gallery.gallery_name }}</h2>
+            
             <div class="col-6 align-left">
-                <i id="search-icon" class="fas fa-search"></i>
-                <label for="user-input"></label><input id="user-input" placeholder="Search">
+{#                <form class="form-inline">#}
+{#                    <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>#}
+{#                    <input  id="user-input" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search..." aria-label="Search">#}
+{#                </form>#}
+
+
+
+
+                <form class="form-inline" role="search">
+                    <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
+                    <input type="text" class="form-control form-control-sm ml-3 w-75" name="q" id="user-input" placeholder="Search..." aria-label="Search for pieces">
+                </form>
             </div>
         </div>
 
         {% if gallery %}
             {% if pieces %}
-                <table class="table well">
+                <table class="table wells">
                     <thead class="opacity1">
                         <tr>
                             <th class="col-sm-4">Art Piece Image</th>
@@ -35,7 +43,7 @@
                             <th class="col-sm-4">Art Piece description</th>
                         </tr>
                     </thead>
-                    <tbody class="opacity1">
+                    <tbody class="opacity1" id="myTable">
                         <div id="replaceable-content">
                             {% include 'artyParty/pieces_results_partial.html' %}
                         </div>

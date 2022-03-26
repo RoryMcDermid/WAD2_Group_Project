@@ -1,12 +1,11 @@
 {% extends 'artyParty/base.html' %}
+{#{% url 'arty:piece' gallery_name_slug=gallery_name_slug piece_name_slug=piece_name_slug %}#}
 {% load staticfiles %}
 
 {% block title_block %}
-    {% if gallery %}
-        {{ gallery.name }}
-    {% else %}
-        Unknown Gallery
-    {% endif %}     
+    {% if gallery %}{{ gallery.gallery_name }}{% else %}
+    Unknown Piece
+    {% endif %}
 {% endblock %}
 
 {% block extral_index_block %}
@@ -30,14 +29,11 @@
     {% if pieces %}
     <ul>
         <!-- changed if name in modelds/populate are difference  '-pieces- -gallery- -image_url-' -->>
-        {% for page in pages %}
-        <li><a href="{{ piece.url }}"><img src="{{ piece.image_url }}" alt="piece in gallary"></a></li>
         <li>{{ pieces.piece_name }}</li>
         <li>{{ pieces.author }}</li>
         <li>{{ pieces.period }}</li>
-
-        {% endfor %}
     </ul>
+        <img src="{{piece.piece_img.url}}" alt="piece image">
     {% else %}
     <strong>No pieces currently in gallery.</strong>
     {% endif %}

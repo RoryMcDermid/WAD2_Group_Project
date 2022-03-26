@@ -7,17 +7,22 @@
 
 {% block body_block %}
     {% if user.is_authenticated %}
-    <form id="personal_detail" method="post" action="save.php">
-        {% csrf_token %}
-        <option value="Username">{{ user.Username }}</option>
+
+    <div>
+        <p class="info p">
+            Username = {{user.username}}
+        </p>
         <br />
-        <label for="{{ user.Email }}">Email: {{ user.Email }}</label>
-        <br />
-        <option value="Birthday"> </option>
-        <br />
-        <option value=""></option>
-        <input type="reset" value="edit details">
-    </form>
+        <p class="info p">
+            Email = {{user.email}}
+        </p>
+    </div>
+    <br />
+    <button>
+        <a class="a_reset" href="{% url 'arty:edit_details' %}">Edit Details</a>
+    </button>
+
+
         
         {% if user.is_power_user %}
         <button><a href="{% url 'arty:add_piece' %}">add pieces</a></button>

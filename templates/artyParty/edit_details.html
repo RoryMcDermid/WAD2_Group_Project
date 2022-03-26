@@ -1,0 +1,28 @@
+{% extends 'artyParty/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Myaccount
+{% endblock %}
+
+{% block body_block %}
+{% if user.is_authenticated %}
+
+    <div>
+        {{message}}
+    </div>
+
+    <form id="personal_detail" method="post" action="{% url 'arty:edit_details' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Edit Details">
+    </form>
+
+
+    {% else %}
+        Please login to access details.
+        <br>
+        Click <a href="{% url 'arty:login' %}">here</a> to login.
+    {% endif %}
+{% endblock %}
