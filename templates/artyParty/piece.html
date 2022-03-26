@@ -37,7 +37,7 @@
                 <div class="row">
                     <h4 class="col-sm-6">Comments</h4>
                     {% if user.is_authenticated %}
-                        <a class="col-sm-6" href="{% url 'rango:add_review' gallary.slug %}">Add Review</a> <br />
+                        <a class="col-sm-6" href="{% url 'arty:add_review' piece.slug gallery.slug %}">Add Review</a> <br />
                     {% endif %}
                 </div>
                 {% if reviews %}

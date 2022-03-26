@@ -289,3 +289,10 @@ def show_review(request):
 
     # which template is this?
     return HttpResponse("Showing Review")
+
+
+def add_review(request, gallery_name_slug, piece_name_slug):
+    ## see rango show_category
+
+    # which template is this?
+    return HttpResponse("Showing Review")

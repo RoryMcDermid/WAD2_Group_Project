@@ -21,5 +21,6 @@ urlpatterns = [
     path('galleries/', views.galleries, name='galleries'),
     path('galleries/<slug:gallery_name_slug>/', views.show_gallery, name='show_gallery'),
     path('galleries/<slug:gallery_name_slug>/<slug:piece_name_slug>/', views.piece, name='piece'),
+    path('galleries/<slug:gallery_name_slug>/<slug:piece_name_slug>/add_review', views.add_review, name='add_review'),
     path('galleries/<slug:gallery_name_slug>/<slug:piece_name_slug>/<slug:review_name_slug>/', views.show_review, name='show_review'),
 ]
