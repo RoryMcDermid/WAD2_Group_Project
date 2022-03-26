@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from artyParty.forms import UserForm, UserProfileForm
+from artyParty.forms import UserForm, UserProfileForm, EditUserForm
 import requests
 from artyParty.models import Piece, Gallery
 from django.contrib.auth import authenticate, login, logout
@@ -148,8 +148,13 @@ def contact_us(request):
 @login_required
 def my_account(request):
     # @loginrequired decorator
-    #
-    context_dict = {}
+
+    form = EditUserForm(instance = request.user)
+
+
+    context_dict = {
+
+    }
 
     # context_dict[''] =
 
@@ -182,8 +187,31 @@ def manage_users(request):
 
 @login_required
 def edit_details(request):
-    # needs template
-    return HttpResponse("Edit details")
+
+    message = ""
+    if request.method == 'POST':
+
+        user_form = EditUserForm(request.POST, instance = request.user)
+
+        if user_form.is_valid():
+
+            user_form.save()
+            message = "Details updated"
+
+        else:
+            # Invalid form or forms - mistakes or something else?
+            # Print problems to the terminal.
+            print(user_form.errors)
+
+    form = EditUserForm(instance = request.user)
+
+    context_dict = {
+        "form":form,
+        "message":message,
+    }
+
+
+    return render(request, 'artyParty/edit_details.html', context=context_dict)
 
 
 def posts(request):

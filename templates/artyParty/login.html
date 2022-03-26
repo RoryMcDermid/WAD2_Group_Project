@@ -16,10 +16,15 @@
     Password: <input type="password" name="password" value="" size="50" />
     <br />
     <input type="submit" value="submit" />
-    <br />
-    <input type=button value="Sign up" οnclick="window.location.{% url 'arty:sign_up' %}">
-    <br />
-    <input type=button value="Back to home page" οnclick="window.location.{% url 'arty:home' %}">
 </form>
+<button>
+    <a class="a_reset" href="{% url 'arty:sign_up' %}">Sign Up</a>
+</button>
+<br />
+<button>
+    <a class="a_reset" href="{% url 'arty:home' %}">Back to home page</a>
+</button>
+
+
 <img src="" alt="">
 {% endblock %}  

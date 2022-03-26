@@ -127,3 +127,13 @@ body {
     animation-timing-function:ease-in-out;
     animation-direction: alternate;
 }
+
+.a_reset {
+    color: black;
+    text-decoration: none;
+}
+
+.a_reset:hover {
+    color: black;
+    text-decoration: none;
+}
