@@ -290,11 +290,18 @@ def show_review(request):
     ## see rango show_category
 
     # which template is this?
+    # return render(request, 'artyParty/show_review.html', context=context_dict)
     return HttpResponse("Showing Review")
 
 
-def add_review(request, gallery_name_slug, piece_name_slug):
+def add_review(request, piece_name_slug, gallery_name_slug):
     ## see rango show_category
+    context_dict ={}
 
+    p = Piece.objects.get(slug=piece_name_slug)
+    gallery = Gallery.objects.get(slug=gallery_name_slug)
+    context_dict['piece'] = p
+    context_dict['gallery'] = gallery
     # which template is this?
-    return HttpResponse("Showing Review")
+    return render(request, 'artyParty/add_review.html', context=context_dict)
+    # return HttpResponse("Showing Review")
