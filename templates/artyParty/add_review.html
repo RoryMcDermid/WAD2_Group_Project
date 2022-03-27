@@ -13,28 +13,19 @@
 {% block body_block %}
     <div class="container wells">
         <h1><strong>Add Review</strong></h1><br />
-        <form id="login_form" method="post" action="{% url 'arty:login' %}">
+        <form id="review" method="post" action="{% url 'arty:add_review' %}">
             {% csrf_token %}
-            <div class ="form-group">
-                <label for="text">Username:</label>
-                <input type="text" class="form-control" name="username" value="" size="50" />
-            </div>
-            <div class ="form-group">
-                <label for="text">Email:</label>
-                <input type="email" class="form-control" name="email" value="" size="50" />
-            </div>
-            <div class ="form-group">
-                <label for="text">Password:</label>
-                <input type="password" class="form-control" name="password" value="" size="50" />
-            </div>
-            <input type="submit" class="btn btn-default" value="submit" />
-            <button class="btn btn-default">
-                <a class="a_reset" class="btn btn-default" href="{% url 'arty:sign_up' %}">Sign Up</a>
-            </button>
-            <br />
-            <button class="btn btn-default">
-                <a class="a_reset" href="{% url 'arty:home' %}">Back to home page</a>
-            </button>
+            {{ form.as_p }}
+
+            <input type="submit" value="Add Review">
         </form>
+
+        <button class="btn btn-default">
+            <a class="a_reset" class="btn btn-default" href="{% url 'arty:sign_up' %}">Sign Up</a>
+        </button>
+        <br />
+        <button class="btn btn-default">
+            <a class="a_reset" href="{% url 'arty:home' %}">Back to home page</a>
+        </button>
     </div>
 {% endblock %}

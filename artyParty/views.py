@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from artyParty.forms import UserForm, UserProfileForm, EditUserForm
+from artyParty.forms import UserForm, UserProfileForm, EditUserForm, AddReviewForm
 import requests
 from artyParty.models import Piece, Gallery, Review
 from django.contrib.auth import authenticate, login, logout
@@ -296,7 +296,27 @@ def show_review(request):
 
 def add_review(request, piece_name_slug, gallery_name_slug):
     ## see rango show_category
-    context_dict ={}
+    message = ""
+    if request.method == 'POST':
+
+        review_form = AddReviewForm(request.POST, instance = request.piece)
+
+        if review_form.is_valid():
+
+            review_form.save()
+            message = "Review Added"
+
+        else:
+            # Invalid form or forms - mistakes or something else?
+            # Print problems to the terminal.
+            print(review_form.errors)
+
+    form = AddReviewForm(instance = request.piece)
+
+    context_dict = {
+        "form":form,
+        "message":message,
+    }
 
     p = Piece.objects.get(slug=piece_name_slug)
     gallery = Gallery.objects.get(slug=gallery_name_slug)
