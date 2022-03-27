@@ -18,14 +18,6 @@
             <h2>{{ gallery.gallery_name }}</h2>
             
             <div class="col-6 align-left">
-{#                <form class="form-inline">#}
-{#                    <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>#}
-{#                    <input  id="user-input" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search..." aria-label="Search">#}
-{#                </form>#}
-
-
-
-
                 <form class="form-inline" role="search">
                     <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
                     <input type="text" class="form-control form-control-sm ml-3 w-75" name="q" id="user-input" placeholder="Search..." aria-label="Search for pieces">
@@ -33,27 +25,29 @@
             </div>
         </div>
 
-        {% if gallery %}
-            {% if pieces %}
-                <table class="table wells">
-                    <thead class="opacity1">
-                        <tr>
-                            <th class="col-sm-4">Art Piece Image</th>
-                            <th class="col-sm-4">Art Piece Name</th>
-                            <th class="col-sm-4">Art Piece description</th>
-                        </tr>
-                    </thead>
-                    <tbody class="opacity1" id="myTable">
-                        <div id="replaceable-content">
-                            {% include 'artyParty/pieces_results_partial.html' %}
-                        </div>
-                    </tbody>
-                </table>
+        <div class="container-fluid">
+            {% if gallery %}
+                {% if pieces %}
+                    <table class="table wells">
+                        <thead class="opacity1">
+                            <tr>
+                                <th class="col-sm-4">Art Piece Image</th>
+                                <th class="col-sm-4">Art Piece Name</th>
+                                <th class="col-sm-4">Art Piece description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="opacity1" id="myTable">
+                            <div id="replaceable-content">
+                                {% include 'artyParty/pieces_results_partial.html' %}
+                            </div>
+                        </tbody>
+                    </table>
+                {% else %}
+                    <strong>There are no pieces present.</strong>
+                {% endif %}
             {% else %}
-                <strong>There are no pieces present.</strong>
+                <strong>There are no galleries present.</strong>
             {% endif %}
-        {% else %}
-            <strong>There are no galleries present.</strong>
-        {% endif %}
+        </div>
     </div>
 {% endblock %}

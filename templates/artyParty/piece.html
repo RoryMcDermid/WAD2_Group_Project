@@ -29,8 +29,10 @@
                         <p>{{ extract }}</p>
                     </div>
                 </div>
-                <img src="{{piece.piece_img.url}}" alt="piece image" class="col-sm-8">
-            </div>
+                <div class="col-sm-8">
+                    <img src="{{piece.piece_img.url}}" alt="piece image" class="img-responsive">
+                </div>
+                </div>
             <br>
             <div class="wells">
                 <div class="row">
@@ -46,17 +48,18 @@
                                 <div class="badge col-sm-3">
                                     <span class="big">{{ review.rating }}</span>
                                     <div class="inline-block">
-                                        {% for key,value in range.items %}
-                                            {% if key == review.review_id %}
-                                                {% for i in value %}
-                                                    ★
-                                                {% endfor %}
-                                            {% endif %}
-                                        {% endfor %}
+                                        <p class="stars">
+                                            {% for key,value in range.items %}
+                                                {% if key == review.review_id %}
+                                                    {% for i in value %}
+                                                        ★
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </p>
                                     </div>
                                 </div>
                                 <p class="col-sm-9">{{ review.review }}</p>
-
                             </div>
                         {% endfor %}
                     </div>

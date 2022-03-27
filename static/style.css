@@ -145,3 +145,12 @@ body {
 .list-group-item:not(:last-child){
     height: 60px;
 }
+
+.stars p{
+    font-size: 3.5vw;
+}
+
+/*for testing*/
+.blue{
+    color: blue;
+}
