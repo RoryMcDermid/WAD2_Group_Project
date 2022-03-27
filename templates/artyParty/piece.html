@@ -38,9 +38,7 @@
                 <div class="row">
                     <h4 class="col-sm-6">Comments</h4>
                     {% if user.is_authenticated %}
-<!--                    {% url 'arty:show_piece' c_p.slug %}-->
-<!--                        <a class="col-sm-6" href="{% url 'arty:add_review' gallery.slug piece.slug %}">Add Review</a> <br />-->
-                        <a class="col-sm-6" href="{% url 'arty:add_review' gallery_name_slug=gallery.slug piece_name_slug=p.slug %}">Add Review</a>
+                        <a class="col-sm-6" href="{% url 'arty:add_review' gallery.slug piece.slug %}">Add Review</a>
                     {% endif %}
                 </div>
                 {% if reviews %}

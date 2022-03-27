@@ -13,7 +13,7 @@
 {% block body_block %}
     <div class="container wells">
         <h1><strong>Add Review</strong></h1><br />
-        <form id="review" method="post" action="{% url 'arty:add_review' %}">
+        <form id="review" method="post" action="{% url 'arty:add_review' gallery.slug piece.slug %}">
             {% csrf_token %}
             {{ form.as_p }}
 
