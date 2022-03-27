@@ -125,7 +125,7 @@ def sign_up(request):
 
     # Render the template depending on the context.
     return render(request, 'artyParty/sign_up.html',
-                  context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
+                    context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
     ############################################################################
 
 
@@ -297,9 +297,10 @@ def show_review(request):
 def add_review(request, piece_name_slug, gallery_name_slug):
     ## see rango show_category
     message = ""
+    p = Piece.objects.get(slug=piece_name_slug)
     if request.method == 'POST':
 
-        review_form = AddReviewForm(request.POST, instance = request.piece)
+        review_form = AddReviewForm(request.POST, instance = p)
 
         if review_form.is_valid():
 
@@ -311,7 +312,7 @@ def add_review(request, piece_name_slug, gallery_name_slug):
             # Print problems to the terminal.
             print(review_form.errors)
 
-    form = AddReviewForm(instance = request.piece)
+    form = AddReviewForm(instance = p)
 
     context_dict = {
         "form":form,

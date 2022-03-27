@@ -23,7 +23,7 @@
                         <img src="{{g.gallery_img.url}}" class="img-responsive" alt="img">
                     </td>
                     <td>
-                        <a href="{{ g.slug }}/">{{ g.gallery_name }}</a>
+                        <a href="{% url 'arty:show_gallery' gallery_name_slug=g.slug %}">{{ g.gallery_name }}</a>
                     </td>
                     <td>
                         <p>{{ g.gallery_description }}</p>

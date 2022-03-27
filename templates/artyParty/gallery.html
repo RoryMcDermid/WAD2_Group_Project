@@ -9,7 +9,7 @@
 
 <!--proof of concept for breadcrumb trail-->
 {% block extral_index_block %}
-<li><a href="{% url 'arty:show_gallery' gallery.slug %}">Pieces in {{ gallery.gallery_name }}</a></li>
+    <li><a href="{% url 'arty:show_gallery' gallery.slug %}">Pieces in {{ gallery.gallery_name }}</a></li>
 {% endblock %}
 
 {% block body_block %}
@@ -31,8 +31,8 @@
                     <table class="table wells">
                         <thead class="opacity1">
                             <tr>
-                                <th class="col-sm-4">Art Piece Image</th>
-                                <th class="col-sm-4">Art Piece Name</th>
+                                <th class="col-sm-5">Art Piece Image</th>
+                                <th class="col-sm-3">Art Piece Name</th>
                                 <th class="col-sm-4">Art Piece description</th>
                             </tr>
                         </thead>
