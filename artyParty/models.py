@@ -33,7 +33,7 @@ class Gallery(models.Model):
         verbose_name_plural = 'Galleries'
 
     def __str__(self):
-        return self.gallery_id
+        return str(self.gallery_id)
 
 
 class Piece(models.Model):
@@ -55,7 +55,7 @@ class Piece(models.Model):
         super(Piece, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.piece_name
+        return (str(self.piece_name))
 
 
 class Review(models.Model):
