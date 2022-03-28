@@ -640,13 +640,6 @@ class showPiecePageTests(TestCase):
         self.assertTrue(is_callable,
                         f"{FAILURE_HEADER}Unexecutable show_piece() function{FAILURE_FOOTER}")
 
-    # # can test all mappings like this?
-    # def test_mapping_exists(self):
-    #     """
-    #     Checks whether the view has the correct URL mapping.
-    #     """
-    #     self.assertEquals(reverse('arty:show_'), '/arty/contact_us',
-    #                       f"{FAILURE_HEADER} URL mapping is either missing or mistyped.{FAILURE_FOOTER}")
 
 
 class showPiecePageTests(TestCase):
@@ -876,7 +869,6 @@ class TemplatesStructureTests(TestCase):
 class ArtyStaticMediaTests(TestCase):
     """
     A series of tests to check whether static files and media files have been setup and used correctly.
-    Also tests for the two required files -- artyParty.jpg and cat.jpg.
     """
 
     def setUp(self):
@@ -969,6 +961,57 @@ class ArtyStaticMediaTests(TestCase):
         self.assertTrue('django.template.context_processors.media' in context_processors_list,
                         f"{FAILURE_HEADER}The 'django.template.context_processors.media' context processor was not included. Check your settings.py module.{FAILURE_FOOTER}")
 
+
+class DatabaseConfigurationTests(TestCase):
+    """
+    Is database configured correctly?
+    """
+
+    def setUp(self):
+        pass
+
+    def does_gitignore_include_database(self, path):
+        """
+        Takes the path to a .gitignore file, and checks to see whether the db.sqlite3 database is present in that file.
+        """
+        f = open(path, 'r')
+
+        for line in f:
+            line = line.strip()
+
+            if line.startswith('db.sqlite3'):
+                return True
+
+        f.close()
+        return False
+
+    def test_databases_variable_exists(self):
+        """
+        Does the DATABASES settings variable exist, and does it have a default configuration?
+        """
+        self.assertTrue(settings.DATABASES,
+                        f"{FAILURE_HEADER}Your project's settings module does not have a DATABASES variable{FAILURE_FOOTER}")
+        self.assertTrue('default' in settings.DATABASES,
+                        f"{FAILURE_HEADER}You do not have a 'default' database configuration in your project's DATABASES configuration variable.{FAILURE_FOOTER}")
+
+    def test_gitignore_for_database(self):
+        """
+        If you are using a Git repository and have set up a .gitignore, checks to see whether the database is present in that file.
+        """
+        git_base_dir = os.popen('git rev-parse --show-toplevel').read().strip()
+
+        if git_base_dir.startswith('fatal'):
+            warnings.warn(
+                "You don't appear to be using a Git repository for your codebase. Although not strictly required, it's *highly recommended*. Skipping this test.")
+        else:
+            gitignore_path = os.path.join(git_base_dir, '.gitignore')
+
+            if os.path.exists(gitignore_path):
+                self.assertTrue(self.does_gitignore_include_database(gitignore_path),
+                                f"{FAILURE_HEADER}Your .gitignore file does not include 'db.sqlite3' -- you should exclude the database binary file from all commits to your Git repository.{FAILURE_FOOTER}")
+            else:
+                warnings.warn(
+                    "You don't appear to have a .gitignore file in place in your repository. We ask that you consider this! Read the Don't git push your Database paragraph in Chapter 5.")
 
 # class Chapter4ExerciseTests(TestCase):
 #     """
