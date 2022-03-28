@@ -311,6 +311,16 @@ def add_review(request, piece_name_slug, gallery_name_slug):
 
             review.piece_id = piece
 
+            user = request.user
+
+            review.userID_id = user.id
+
+            max = 0
+            for reviews in Review.objects.all():
+                if reviews.review_id > max:
+                    max = reviews.review_id
+
+            review.review_id = max + 1
 
             review.save()
 
