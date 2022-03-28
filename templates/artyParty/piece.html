@@ -18,7 +18,7 @@
             <h1>{{ piece.piece_name }}</h1>
             <hr>
             <div class="row">
-                <div class="col-sm-4 list-group">
+                <div class="col-sm-5 list-group">
                     <ul class = "">
                         <li class="list-group-item ">Name: <span class="badge">{{ piece.piece_name }}</span></li>
                         <li class="list-group-item">author: <span class="badge">{{ piece.author }}</span></li>
@@ -29,25 +29,25 @@
                         <p>{{ extract }}</p>
                     </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-7">
                     <img src="{{piece.piece_img.url}}" alt="piece image" class="img-responsive">
                 </div>
                 </div>
             <br>
             <div class="wells">
                 <div class="row">
-                    <h4 class="col-sm-6">Comments</h4>
+                    <h4 class="col-sm-10">Comments</h4>
                     {% if user.is_authenticated %}
-                        <a class="col-sm-6" href="{% url 'arty:add_review' gallery.slug piece.slug %}">Add Review</a>
+                        <a class="col-sm-2 text-dark" href="{% url 'arty:add_review' gallery.slug piece.slug %}">Add Review</a>
                     {% endif %}
                 </div>
                 {% if reviews %}
                     <div class="less_wide">
                         {% for review in reviews %}
                             <div class="wells less_wide row">
-                                <div class="badge col-sm-3">
-                                    <span class="big">{{ review.rating }}</span>
-                                    <div class="inline-block">
+                                <div class="badge col-sm-5">
+                                    <span class="big ">{{ review.rating }}</span>
+                                    <div class="inline-block starcont" >
                                         <p class="stars">
                                             {% for key,value in range.items %}
                                                 {% if key == review.review_id %}
@@ -59,7 +59,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <p class="col-sm-9">{{ review.review }}</p>
+                                <p class="col-sm-7">{{ review.review }}</p>
                             </div>
                         {% endfor %}
                     </div>

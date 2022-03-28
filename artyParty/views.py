@@ -326,6 +326,8 @@ def add_review(request, piece_name_slug, gallery_name_slug):
 
             message = "Review Added"
 
+
+            return redirect(reverse('arty:piece', kwargs={'gallery_name_slug':gallery_name_slug, 'piece_name_slug':piece_name_slug}))
         else:
             # Invalid form or forms - mistakes or something else?
             # Print problems to the terminal.

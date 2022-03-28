@@ -147,10 +147,18 @@ body {
 }
 
 .stars p{
-    font-size: 3.5vw;
+    font-size: 10%;
 }
 
 /*for testing*/
 .blue{
     color: blue;
+}
+
+.starcont{
+    font-size: 100%;
+}
+
+ratingwidth{
+    width: 30px;
 }
