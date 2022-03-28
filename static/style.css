@@ -1,29 +1,7 @@
 body {
     background-size: 40px 40px;
-    background-image:
-        linear-gradient(to right, grey 1px, transparent 1px),
-        linear-gradient(to bottom, grey 1px, transparent 1px);
-
-    /*background:*/
-    /*    linear-gradient(-90deg, rgba(0, 0, 0, 1.03) 1px, transparent 1px),*/
-    /*    linear-gradient(rgba(0, 0, 0, 1.03) 1px, transparent 1px),*/
-    /*    linear-gradient(-90deg, rgba(0, 0, 0, 1.03) 1px, transparent 1px),*/
-    /*    linear-gradient(rgba(0, 0, 0, 1.03) 1px, transparent 1px),*/
-    /*    linear-gradient(transparent 3px, transparent 3px, transparent 78px, transparent 78px),*/
-    /*    linear-gradient(-90deg, transparent 1px, transparent 1px),*/
-    /*    linear-gradient(-90deg, transparent 3px, transparent 3px, transparent 78px, transparent 78px),*/
-    /*    linear-gradient(transparent 1px, transparent 1px), transparent;*/
-    /*background-size:*/
-    /*    10px 10px,*/
-    /*    10px 10px,*/
-    /*    10px 10px,*/
-    /*    10px 10px,*/
-    /*    10px 10px,*/
-    /*    10px 10px,*/
-    /*    10px 10px,*/
-    /*    10px 10px;*/
-
-    /*background-image: url("WAD2_Group_Project\media\Graph-Paper-Background.jpg");*/
+    background-image: linear-gradient(to right, grey 1px, transparent 1px),
+    linear-gradient(to bottom, grey 1px, transparent 1px);
 }
 
 .index_line {
@@ -34,7 +12,7 @@ body {
     width: 100%;
 }
 
-.index_line li{
+.index_line li {
     list-style-type: none;
     padding-right: 15px;
     padding: 0 0.5rem;
@@ -46,59 +24,59 @@ body {
     border-right: 0.5px solid black;
 }
 
-.index_line a{
+.index_line a {
     color: black;
     text-decoration: none;
 }
 
-.navbar-nav a{
+.navbar-nav a {
     color: black;
     text-decoration: none;
 }
 
-.logo{
+.logo {
     min-height: 20px;
     padding: 19px;
     background-color: white;
     border: 1px solid #e3e3e3;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
     width: 180px;
 }
 
-.navbar-nav{
+.navbar-nav {
     margin-left: 50%;
 }
 
-.info{
+.info {
     background-color: white;
     padding: 10px;
     margin: 20px;
     border: 1.5px solid black;
 }
 
-.info h2{
+.info h2 {
     font-weight: bold;
 }
 
-.info p{
+.info p {
     padding-left: 10px;
 }
 
-.center_text{
+.center_text {
     text-align: center;
 }
 
-.form-group label{
+.form-group label {
     font-size: medium;
 }
 
-.table{
+.table {
     overflow: hidden;
 }
 
-.wells{
+.wells {
     min-height: 20px;
     padding: 19px;
     /*color: blue;*/
@@ -106,25 +84,29 @@ body {
     /*(0, 0, 0, 0.5) if you are boring*/
     border: 1px solid #e3e3e3;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }
 
-.opacity1{
+.opacity1 {
     opacity: 1;
 }
 
 @keyframes blinker {
-    from {opacity: 1.0;}
-    to {opacity: 0.0;}
+    from {
+        opacity: 1.0;
+    }
+    to {
+        opacity: 0.0;
+    }
 }
 
 .blink {
     text-decoration: blink;
     animation-name: blinker;
     animation-duration: 0.6s;
-    animation-iteration-count:infinite;
-    animation-timing-function:ease-in-out;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
     animation-direction: alternate;
 }
 
@@ -138,27 +120,27 @@ body {
     text-decoration: none;
 }
 
-.less_wide{
+.less_wide {
     margin-left: 5%;
 }
 
-.list-group-item:not(:last-child){
+.list-group-item:not(:last-child) {
     height: 60px;
 }
 
-.stars p{
+.stars p {
     font-size: 10%;
 }
 
 /*for testing*/
-.blue{
+.blue {
     color: blue;
 }
 
-.starcont{
+.starcont {
     font-size: 100%;
 }
 
-ratingwidth{
+ratingwidth {
     width: 30px;
 }

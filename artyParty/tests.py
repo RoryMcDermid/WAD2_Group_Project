@@ -1,9 +1,8 @@
-import os
 import importlib
-from django.urls import reverse
-from django.test import TestCase
+import os
 from django.conf import settings
-
+from django.test import TestCase
+from django.urls import reverse
 
 FAILURE_HEADER = f"{os.linesep}{os.linesep}{os.linesep}================{os.linesep}Arty Test Fail{os.linesep}================{os.linesep}"
 FAILURE_FOOTER = f"{os.linesep}"
@@ -458,7 +457,6 @@ class galleryPageTests(TestCase):
         self.assertTrue(is_callable,
                         f"{FAILURE_HEADER}Unexecutable contact_us() function{FAILURE_FOOTER}")
 
-
     def test_mapping_exists(self):
         """
         Checks whether the view has the correct URL mapping.
@@ -490,7 +488,6 @@ class showGalleryPageTests(TestCase):
                         f"{FAILURE_HEADER}Unexecutable show_gallery() function{FAILURE_FOOTER}")
 
 
-
 class showReviewPageTests(TestCase):
     """
     wait
@@ -513,7 +510,6 @@ class showReviewPageTests(TestCase):
                         f"{FAILURE_HEADER}No contact us view.{FAILURE_FOOTER}")
         self.assertTrue(is_callable,
                         f"{FAILURE_HEADER}Unexecutable show_review() function{FAILURE_FOOTER}")
-
 
 
 class TemplatesStructureTests(TestCase):
@@ -617,7 +613,7 @@ class ArtyStaticMediaTests(TestCase):
         """
         does_static_dir_exist = os.path.isdir(self.static_dir)
         does_images_static_dir_exist = os.path.isdir(os.path.join(self.static_dir, 'images'))
-        #does_artyParty_jpg_exist = os.path.isfile(os.path.join(self.static_dir, 'images', 'artyParty.jpg'))
+        # does_artyParty_jpg_exist = os.path.isfile(os.path.join(self.static_dir, 'images', 'artyParty.jpg'))
 
         self.assertTrue(does_static_dir_exist,
                         f"{FAILURE_HEADER}The static directory was not found in the expected location. Check the instructions in the book, and try again.{FAILURE_FOOTER}")

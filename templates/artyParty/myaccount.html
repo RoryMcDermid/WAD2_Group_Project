@@ -2,39 +2,38 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Myaccount           
+Myaccount
 {% endblock %}
 
 {% block body_block %}
-    {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 
-    <div>
-        <p class="info p">
-            Username = {{user.username}}
-        </p>
-        <br />
-        <p class="info p">
-            Email = {{user.email}}
-        </p>
-    </div>
-    <br />
-    <button>
-        <a class="a_reset" href="{% url 'arty:edit_details' %}">Edit Details</a>
-    </button>
+<div>
+    <p class="info p">
+        Username = {{user.username}}
+    </p>
+    <br/>
+    <p class="info p">
+        Email = {{user.email}}
+    </p>
+</div>
+<br/>
+<button>
+    <a class="a_reset" href="{% url 'arty:edit_details' %}">Edit Details</a>
+</button>
 
 
-        
-        {% if user.is_power_user %}
-        <button><a href="{% url 'arty:add_piece' %}">add pieces</a></button>
-        <button><a href="{% url 'arty:posts' %}">view posts</a></button>
-            {% if user.is_owner %}
-            <button><a href="{% url 'arty:add_gallery' %}">add gallery</a></button>
-            <button><a href="{% url 'arty:manage_users' %}">manage users</a></button>
-            {% endif %}
-        {% endif %}
-    {% else %}
-        Please login to access details.
-        <br>
-        Click <a href="{% url 'arty:login' %}">here</a> to login.
-    {% endif %}
+{% if user.is_power_user %}
+<button><a href="{% url 'arty:add_piece' %}">add pieces</a></button>
+<button><a href="{% url 'arty:posts' %}">view posts</a></button>
+{% if user.is_owner %}
+<button><a href="{% url 'arty:add_gallery' %}">add gallery</a></button>
+<button><a href="{% url 'arty:manage_users' %}">manage users</a></button>
+{% endif %}
+{% endif %}
+{% else %}
+Please login to access details.
+<br>
+Click <a href="{% url 'arty:login' %}">here</a> to login.
+{% endif %}
 {% endblock %}

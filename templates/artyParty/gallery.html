@@ -2,52 +2,53 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    {% if gallery %}{{ gallery.gallery_name }}{% else %}
-    Unknown Gallery
-    {% endif %}
+{% if gallery %}{{ gallery.gallery_name }}{% else %}
+Unknown Gallery
+{% endif %}
 {% endblock %}
 
 <!--proof of concept for breadcrumb trail-->
 {% block extral_index_block %}
-    <li><a href="{% url 'arty:show_gallery' gallery.slug %}">Pieces in {{ gallery.gallery_name }}</a></li>
+<li><a href="{% url 'arty:show_gallery' gallery.slug %}">Pieces in {{ gallery.gallery_name }}</a></li>
 {% endblock %}
 
 {% block body_block %}
-    <div class="container">
-        <div class="search_bar">
-            <h2>{{ gallery.gallery_name }}</h2>
-            
-            <div class="col-6 align-left">
-                <form class="form-inline" role="search">
-                    <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
-                    <input type="text" class="form-control form-control-sm ml-3 w-75" name="q" id="user-input" placeholder="Search..." aria-label="Search for pieces">
-                </form>
-            </div>
-        </div>
+<div class="container">
+    <div class="search_bar">
+        <h2>{{ gallery.gallery_name }}</h2>
 
-        <div class="container-fluid">
-            {% if gallery %}
-                {% if pieces %}
-                    <table class="table wells">
-                        <thead class="opacity1">
-                            <tr>
-                                <th class="col-sm-5">Art Piece Image</th>
-                                <th class="col-sm-3">Art Piece Name</th>
-                                <th class="col-sm-4">Art Piece description</th>
-                            </tr>
-                        </thead>
-                        <tbody class="opacity1" id="myTable">
-                            <div id="replaceable-content">
-                                {% include 'artyParty/pieces_results_partial.html' %}
-                            </div>
-                        </tbody>
-                    </table>
-                {% else %}
-                    <strong>There are no pieces present.</strong>
-                {% endif %}
-            {% else %}
-                <strong>There are no galleries present.</strong>
-            {% endif %}
+        <div class="col-6 align-left">
+            <form class="form-inline" role="search">
+                <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
+                <input type="text" class="form-control form-control-sm ml-3 w-75" name="q" id="user-input"
+                        placeholder="Search..." aria-label="Search for pieces">
+            </form>
         </div>
     </div>
+
+    <div class="container-fluid">
+        {% if gallery %}
+        {% if pieces %}
+        <table class="table wells">
+            <thead class="opacity1">
+            <tr>
+                <th class="col-sm-5">Art Piece Image</th>
+                <th class="col-sm-3">Art Piece Name</th>
+                <th class="col-sm-4">Art Piece description</th>
+            </tr>
+            </thead>
+            <tbody class="opacity1" id="myTable">
+            <div id="replaceable-content">
+                {% include 'artyParty/pieces_results_partial.html' %}
+            </div>
+            </tbody>
+        </table>
+        {% else %}
+        <strong>There are no pieces present.</strong>
+        {% endif %}
+        {% else %}
+        <strong>There are no galleries present.</strong>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

@@ -1,14 +1,13 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from artyParty.forms import UserForm, UserProfileForm, EditUserForm, AddReviewForm
 import requests
+from artyParty.forms import UserForm, UserProfileForm, EditUserForm, AddReviewForm
 from artyParty.models import Piece, Gallery, Review
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
-from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
+from django.shortcuts import render
 from django.template.loader import render_to_string
-from django.http import JsonResponse
+from django.urls import reverse
 
 
 # maybe rename this or homepage to have the same name?
@@ -147,8 +146,7 @@ def contact_us(request):
 def my_account(request):
     # @loginrequired decorator
 
-    form = EditUserForm(instance = request.user)
-
+    form = EditUserForm(instance=request.user)
 
     context_dict = {
 
@@ -160,36 +158,11 @@ def my_account(request):
 
 
 @login_required
-def add_piece(request):
-    # take from rango
-    context_dict = {}
-
-    return render(request, 'artyParty/add_pieces.html', context=context_dict)
-
-
-@login_required
-def add_gallery(request):
-
-    context_dict = {}
-
-    return render(request, 'artyParty/add_galleries.html', context=context_dict)
-
-
-@login_required
-def manage_users(request):
-
-    context_dict = {}
-
-    return render(request, 'artyParty/manage_users.html', context=context_dict)
-
-
-@login_required
 def edit_details(request):
-
     message = ""
     if request.method == 'POST':
 
-        user_form = EditUserForm(request.POST, instance = request.user)
+        user_form = EditUserForm(request.POST, instance=request.user)
 
         if user_form.is_valid():
 
@@ -201,28 +174,14 @@ def edit_details(request):
             # Print problems to the terminal.
             print(user_form.errors)
 
-    form = EditUserForm(instance = request.user)
+    form = EditUserForm(instance=request.user)
 
     context_dict = {
-        "form":form,
-        "message":message,
+        "form": form,
+        "message": message,
     }
 
-
     return render(request, 'artyParty/edit_details.html', context=context_dict)
-
-
-def posts(request):
-    # what is this posts page about? Is this where we post info?
-
-    context_dict = {}
-
-    return render(request, 'artyParty/post.html', context=context_dict)
-
-    # res = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Christ_of_Saint_John_of_the_Cross")
-    # data = res.json()
-    # context_dict = {'descript': data['extract']}
-    # return render(request, "View Posts", context_dict)
 
 
 def galleries(request):
@@ -260,7 +219,6 @@ def show_gallery(request, gallery_name_slug):
 
 
 def piece(request, gallery_name_slug, piece_name_slug):
-
     context_dict = {}
     try:
         p = Piece.objects.get(slug=piece_name_slug)
@@ -283,13 +241,6 @@ def piece(request, gallery_name_slug, piece_name_slug):
         context_dict['gallery'] = None
     return render(request, 'artyParty/piece.html', context=context_dict)
 
-def show_review(request):
-    ## see rango show_category
-
-    # which template is this?
-    # return render(request, 'artyParty/show_review.html', context=context_dict)
-    return HttpResponse("Showing Review")
-
 
 def add_review(request, piece_name_slug, gallery_name_slug):
     ## see rango show_category
@@ -297,14 +248,11 @@ def add_review(request, piece_name_slug, gallery_name_slug):
     piece = Piece.objects.get(slug=piece_name_slug)
     if request.method == 'POST':
 
-
         review_form = AddReviewForm(request.POST)
 
         if review_form.is_valid():
 
-
-
-            review = review_form.save(commit = False)
+            review = review_form.save(commit=False)
 
             review.piece_id = piece
 
@@ -323,8 +271,8 @@ def add_review(request, piece_name_slug, gallery_name_slug):
 
             message = "Review Added"
 
-
-            return redirect(reverse('arty:piece', kwargs={'gallery_name_slug':gallery_name_slug, 'piece_name_slug':piece_name_slug}))
+            return redirect(reverse('arty:piece', kwargs={'gallery_name_slug': gallery_name_slug,
+                                                            'piece_name_slug': piece_name_slug}))
         else:
             # Invalid form or forms - mistakes or something else?
             # Print problems to the terminal.
@@ -333,8 +281,8 @@ def add_review(request, piece_name_slug, gallery_name_slug):
     form = AddReviewForm()
 
     context_dict = {
-        "form":form,
-        "message":message,
+        "form": form,
+        "message": message,
     }
 
     gallery = Gallery.objects.get(slug=gallery_name_slug)
