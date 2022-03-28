@@ -6,7 +6,12 @@ from django.urls import reverse
 
 FAILURE_HEADER = f"{os.linesep}{os.linesep}{os.linesep}================{os.linesep}Arty Test Fail{os.linesep}================{os.linesep}"
 FAILURE_FOOTER = f"{os.linesep}"
-
+import warnings
+from artyParty.models import UserProfile, Gallery, Piece, Review
+from django.urls import reverse
+from django.test import TestCase
+from django.conf import settings
+from django.contrib.auth.models import User
 
 class ProjectStructureTests(TestCase):
     """
@@ -613,14 +618,11 @@ class ArtyStaticMediaTests(TestCase):
         """
         does_static_dir_exist = os.path.isdir(self.static_dir)
         does_images_static_dir_exist = os.path.isdir(os.path.join(self.static_dir, 'images'))
-        # does_artyParty_jpg_exist = os.path.isfile(os.path.join(self.static_dir, 'images', 'artyParty.jpg'))
 
         self.assertTrue(does_static_dir_exist,
                         f"{FAILURE_HEADER}The static directory was not found in the expected location. Check the instructions in the book, and try again.{FAILURE_FOOTER}")
         self.assertTrue(does_images_static_dir_exist,
                         f"{FAILURE_HEADER}The images subdirectory was not found in your static directory.{FAILURE_FOOTER}")
-        # self.assertTrue(does_artyParty_jpg_exist,
-        #                 f"{FAILURE_HEADER}We couldn't locate the artyParty.jpg image in the /static/images/ directory. If you think you've included the file, make sure to check the file extension. Sometimes, a JPG can have the extension .jpeg. Be careful! It must be .jpg for this test.{FAILURE_FOOTER}")
 
     def test_does_media_directory_exist(self):
         """
@@ -692,113 +694,5 @@ class ArtyStaticMediaTests(TestCase):
                         f"{FAILURE_HEADER}The 'django.template.context_processors.media' context processor was not included. Check your settings.py module.{FAILURE_FOOTER}")
 
 
-class DatabaseConfigurationTests(TestCase):
-    """
-    Is database configured correctly?
-    """
 
-    def setUp(self):
-        pass
 
-    def does_gitignore_include_database(self, path):
-        """
-        Takes the path to a .gitignore file, and checks to see whether the db.sqlite3 database is present in that file.
-        """
-        f = open(path, 'r')
-
-        for line in f:
-            line = line.strip()
-
-            if line.startswith('db.sqlite3'):
-                return True
-
-        f.close()
-        return False
-
-    def test_databases_variable_exists(self):
-        """
-        Does the DATABASES settings variable exist, and does it have a default configuration?
-        """
-        self.assertTrue(settings.DATABASES,
-                        f"{FAILURE_HEADER}Your project's settings module does not have a DATABASES variable{FAILURE_FOOTER}")
-        self.assertTrue('default' in settings.DATABASES,
-                        f"{FAILURE_HEADER}You do not have a 'default' database configuration in your project's DATABASES configuration variable.{FAILURE_FOOTER}")
-
-    def test_gitignore_for_database(self):
-        """
-        If you are using a Git repository and have set up a .gitignore, checks to see whether the database is present in that file.
-        """
-        git_base_dir = os.popen('git rev-parse --show-toplevel').read().strip()
-
-        if git_base_dir.startswith('fatal'):
-            warnings.warn(
-                "You don't appear to be using a Git repository for your codebase. Although not strictly required, it's *highly recommended*. Skipping this test.")
-        else:
-            gitignore_path = os.path.join(git_base_dir, '.gitignore')
-
-            if os.path.exists(gitignore_path):
-                self.assertTrue(self.does_gitignore_include_database(gitignore_path),
-                                f"{FAILURE_HEADER}Your .gitignore file does not include 'db.sqlite3' -- you should exclude the database binary file from all commits to your Git repository.{FAILURE_FOOTER}")
-            else:
-                warnings.warn(
-                    "You don't appear to have a .gitignore file in place in your repository. We ask that you consider this! Read the Don't git push your Database paragraph in Chapter 5.")
-
-#
-# class ModelTests(TestCase):
-#     """
-#     Are the models set up correctly, and do all the required attributes exist?
-#     """
-#
-#     def setUp(self):
-#         category_py = Category.objects.get_or_create(name='Python', views=123, likes=55)
-#         Category.objects.get_or_create(name='Django', views=187, likes=90)
-#
-#         Page.objects.get_or_create(category=category_py[0],
-#                                    title='Tango with Django',
-#                                    url='https://www.tangowithdjango.com',
-#                                    views=156)
-#
-#     def test_category_model(self):
-#         """
-#         Runs a series of tests on the Category model.
-#         Do the correct attributes exist?
-#         """
-#         category_py = Category.objects.get(name='Python')
-#         self.assertEqual(category_py.views, 123,
-#                          f"{FAILURE_HEADER}Tests on the Category model failed. Check you have all required attributes (including those specified in the exercises!), and try again.{FAILURE_FOOTER}")
-#         self.assertEqual(category_py.likes, 55,
-#                          f"{FAILURE_HEADER}Tests on the Category model failed. Check you have all required attributes (including those specified in the exercises!), and try again.{FAILURE_FOOTER}")
-#
-#         category_dj = Category.objects.get(name='Django')
-#         self.assertEqual(category_dj.views, 187,
-#                          f"{FAILURE_HEADER}Tests on the Category model failed. Check you have all required attributes (including those specified in the exercises!), and try again.{FAILURE_FOOTER}")
-#         self.assertEqual(category_dj.likes, 90,
-#                          f"{FAILURE_HEADER}Tests on the Category model failed. Check you have all required attributes (including those specified in the exercises!), and try again.{FAILURE_FOOTER}")
-#
-#     def test_page_model(self):
-#         """
-#         Runs some tests on the Page model.
-#         Do the correct attributes exist?
-#         """
-#         category_py = Category.objects.get(name='Python')
-#         page = Page.objects.get(title='Tango with Django')
-#         self.assertEqual(page.url, 'https://www.tangowithdjango.com',
-#                          f"{FAILURE_HEADER}Tests on the Page model failed. Check you have all required attributes (including those specified in the exercises!), and try again.{FAILURE_FOOTER}")
-#         self.assertEqual(page.views, 156,
-#                          f"{FAILURE_HEADER}Tests on the Page model failed. Check you have all required attributes (including those specified in the exercises!), and try again.{FAILURE_FOOTER}")
-#         self.assertEqual(page.title, 'Tango with Django',
-#                          f"{FAILURE_HEADER}Tests on the Page model failed. Check you have all required attributes (including those specified in the exercises!), and try again.{FAILURE_FOOTER}")
-#         self.assertEqual(page.category, category_py,
-#                          f"{FAILURE_HEADER}Tests on the Page model failed. Check you have all required attributes (including those specified in the exercises!), and try again.{FAILURE_FOOTER}")
-#
-#     def test_str_method(self):
-#         """
-#         Tests to see if the correct __str__() method has been implemented for each model.
-#         """
-#         category_py = Category.objects.get(name='Python')
-#         page = Page.objects.get(title='Tango with Django')
-#
-#         self.assertEqual(str(category_py), 'Python',
-#                          f"{FAILURE_HEADER}The __str__() method in the Category class has not been implemented according to the specification given in the book.{FAILURE_FOOTER}")
-#         self.assertEqual(str(page), 'Tango with Django',
-#                          f"{FAILURE_HEADER}The __str__() method in the Page class has not been implemented according to the specification given in the book.{FAILURE_FOOTER}")
