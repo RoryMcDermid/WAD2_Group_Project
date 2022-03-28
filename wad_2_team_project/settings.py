@@ -137,4 +137,4 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-ALLOWED_HOSTS = ['http://jnpawlowska.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['jnpawlowska.pythonanywhere.com', '127.0.0.1']
