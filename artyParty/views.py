@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from artyParty.forms import UserForm, UserProfileForm, EditUserForm, AddReviewForm
 import requests
-from artyParty.models import Piece, Gallery, Review
+from artyParty.models import Piece, Gallery, Review, UserProfile
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.urls import reverse
@@ -102,11 +102,22 @@ def sign_up(request):
             # Since we need to set the user attribute ourselves,
             # we set commit=False. This delays saving the model
             # until we're ready to avoid integrity problems.
+
             profile = profile_form.save(commit=False)
             profile.user = user
 
+            max = 0
+            for profiles in UserProfile.objects.all():
+                if profiles.userID > max:
+                    max = profiles.userID
+
+            profile.userID = max + 1
+
+
             # Now we save the UserProfile model instance.
             profile.save()
+
+
 
             # Update our variable to indicate that the template
             # registration was successful.
