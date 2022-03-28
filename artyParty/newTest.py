@@ -1,14 +1,14 @@
-import os
 import importlib
-from django.urls import reverse
+import os
 from django.test import TestCase
+from django.urls import reverse
+
 
 class ProjectStructureTests(TestCase):
 
     def setUp(self):
         self.project_base_dir = os.getcwd()
         self.arty_app_dir = os.path.join(self.project_base_dir, 'artyParty')
-
 
     def test_project_created(self):
         """

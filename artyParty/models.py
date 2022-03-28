@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.template.defaultfilters import slugify
 
 
@@ -9,7 +9,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     website = models.URLField(blank=True)
     userID = models.IntegerField(unique=True, blank=False)
-
 
     def __str__(self):
         return self.user.username
@@ -59,11 +58,10 @@ class Piece(models.Model):
 
 
 class Review(models.Model):
-
-    review_id = models.IntegerField(unique=True,)
+    review_id = models.IntegerField(unique=True, )
     piece_id = models.ForeignKey(Piece, on_delete=models.CASCADE, blank=False)
     rating = models.IntegerField(blank=False)
-    userID = models.ForeignKey(User, on_delete=models.CASCADE,)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE, )
     review = models.TextField()
 
     def __str__(self):

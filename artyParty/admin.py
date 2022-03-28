@@ -1,6 +1,6 @@
-from django.contrib import admin
-from artyParty.models import UserProfile
 from artyParty.models import Gallery, Piece, Review
+from artyParty.models import UserProfile
+from django.contrib import admin
 
 
 class GalleryAdmin(admin.ModelAdmin):

@@ -2,71 +2,71 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    {% if piece %}{{ piece.piece_name }}{% else %}
-    Unknown Piece
-    {% endif %}
+{% if piece %}{{ piece.piece_name }}{% else %}
+Unknown Piece
+{% endif %}
 {% endblock %}
 
 {% block extral_index_block %}
-    <li><a href="{% url 'arty:show_gallery' gallery.slug %}">{{ gallery.gallery_name }}</a></li>
-    <li><a href="{% url 'arty:piece' gallery.slug piece.slug %}">{{ piece.piece_name }}</a></li>
+<li><a href="{% url 'arty:show_gallery' gallery.slug %}">{{ gallery.gallery_name }}</a></li>
+<li><a href="{% url 'arty:piece' gallery.slug piece.slug %}">{{ piece.piece_name }}</a></li>
 {% endblock %}
 
 {% block body_block %}
-    <div class="container">
-        {% if piece %}
-            <h1>{{ piece.piece_name }}</h1>
-            <hr>
-            <div class="row">
-                <div class="col-sm-5 list-group">
-                    <ul class = "">
-                        <li class="list-group-item ">Name: <span class="badge">{{ piece.piece_name }}</span></li>
-                        <li class="list-group-item">Author: <span class="badge">{{ piece.author }}</span></li>
-                        <li class="list-group-item">Period: <span class="badge">{{ piece.period }}</span></li>
-                    </ul>
+<div class="container">
+    {% if piece %}
+    <h1>{{ piece.piece_name }}</h1>
+    <hr>
+    <div class="row">
+        <div class="col-sm-5 list-group">
+            <ul class="">
+                <li class="list-group-item ">Name: <span class="badge">{{ piece.piece_name }}</span></li>
+                <li class="list-group-item">Author: <span class="badge">{{ piece.author }}</span></li>
+                <li class="list-group-item">Period: <span class="badge">{{ piece.period }}</span></li>
+            </ul>
 
-                    <div class="wells">
-                        <p>{{ extract }}</p>
-                    </div>
-                </div>
-                <div class="col-sm-7">
-                    <img src="{{piece.piece_img.url}}" alt="piece image" class="img-responsive">
-                </div>
-                </div>
-            <br>
             <div class="wells">
-                <div class="row">
-                    <h4 class="col-sm-10">Comments</h4>
-                    {% if user.is_authenticated %}
-                        <a class="col-sm-2 text-dark" href="{% url 'arty:add_review' gallery.slug piece.slug %}">Add Review</a>
-                    {% endif %}
-                </div>
-                {% if reviews %}
-                    <div class="less_wide">
-                        {% for review in reviews %}
-                            <div class="wells less_wide row">
-                                <div class="badge col-sm-5">
-                                    <span class="big ">{{ review.rating }}</span>
-                                    <div class="inline-block starcont" >
-                                        <p class="stars">
-                                            {% for key,value in range.items %}
-                                                {% if key == review.review_id %}
-                                                    {% for i in value %}
-                                                        ★
-                                                    {% endfor %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        </p>
-                                    </div>
-                                </div>
-                                <p class="col-sm-7">{{ review.review }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
+                <p>{{ extract }}</p>
             </div>
-        {% else %}
-            The specified piece does not exist.
+        </div>
+        <div class="col-sm-7">
+            <img src="{{piece.piece_img.url}}" alt="piece image" class="img-responsive">
+        </div>
+    </div>
+    <br>
+    <div class="wells">
+        <div class="row">
+            <h4 class="col-sm-10">Comments</h4>
+            {% if user.is_authenticated %}
+            <a class="col-sm-2 text-dark" href="{% url 'arty:add_review' gallery.slug piece.slug %}">Add Review</a>
+            {% endif %}
+        </div>
+        {% if reviews %}
+        <div class="less_wide">
+            {% for review in reviews %}
+            <div class="wells less_wide row">
+                <div class="badge col-sm-5">
+                    <span class="big ">{{ review.rating }}</span>
+                    <div class="inline-block starcont">
+                        <p class="stars">
+                            {% for key,value in range.items %}
+                            {% if key == review.review_id %}
+                            {% for i in value %}
+                            ★
+                            {% endfor %}
+                            {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+                <p class="col-sm-7">{{ review.review }}</p>
+            </div>
+            {% endfor %}
+        </div>
         {% endif %}
     </div>
+    {% else %}
+    The specified piece does not exist.
+    {% endif %}
+</div>
 {% endblock %}

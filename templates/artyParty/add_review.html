@@ -2,30 +2,30 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Add Review
+Add Review
 {% endblock %}
 
 {% block extral_index_block %}
-    <li><a href="{% url 'arty:show_gallery' gallery.slug %}">{{ gallery.gallery_name }}</a></li>
-    <li><a href="{% url 'arty:piece' gallery.slug piece.slug %}">{{ piece.piece_name }}</a></li>
+<li><a href="{% url 'arty:show_gallery' gallery.slug %}">{{ gallery.gallery_name }}</a></li>
+<li><a href="{% url 'arty:piece' gallery.slug piece.slug %}">{{ piece.piece_name }}</a></li>
 {% endblock %}
 
 {% block body_block %}
-    <div class="container wells">
-        <h1><strong>Add Review</strong></h1><br />
-        <form id="review" method="post" action="{% url 'arty:add_review' gallery.slug piece.slug %}">
-            {% csrf_token %}
-            {{ form.as_p }}
+<div class="container wells">
+    <h1><strong>Add Review</strong></h1><br/>
+    <form id="review" method="post" action="{% url 'arty:add_review' gallery.slug piece.slug %}">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-            <input type="submit" value="Add Review">
-        </form>
+        <input type="submit" value="Add Review">
+    </form>
 
-        <button class="btn btn-default">
-            <a class="a_reset" class="btn btn-default" href="{% url 'arty:sign_up' %}">Sign Up</a>
-        </button>
-        <br />
-        <button class="btn btn-default">
-            <a class="a_reset" href="{% url 'arty:home' %}">Back to home page</a>
-        </button>
-    </div>
+    <button class="btn btn-default">
+        <a class="a_reset" class="btn btn-default" href="{% url 'arty:sign_up' %}">Sign Up</a>
+    </button>
+    <br/>
+    <button class="btn btn-default">
+        <a class="a_reset" href="{% url 'arty:home' %}">Back to home page</a>
+    </button>
+</div>
 {% endblock %}
