@@ -26,12 +26,12 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
+
 SECRET_KEY = '(c99230-4fudvh7k6hs@_m(^()(6fwi#ix(i@!^_q)czw%9v3d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['jnpawlowska.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -137,4 +137,4 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-ALLOWED_HOSTS = ['http://jnpawlowska.pythonanywhere.com']
+ALLOWED_HOSTS = ['http://jnpawlowska.pythonanywhere.com', '127.0.0.1']
