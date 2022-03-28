@@ -60,11 +60,11 @@ class Piece(models.Model):
 
 class Review(models.Model):
 
-    review_id = models.IntegerField(unique=True, blank=False)
+    review_id = models.IntegerField(unique=True,)
     piece_id = models.ForeignKey(Piece, on_delete=models.CASCADE, blank=False)
     rating = models.IntegerField(blank=False)
     userID = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     review = models.TextField()
 
     def __str__(self):
-        return self.review_id
+        return self.review[:10]

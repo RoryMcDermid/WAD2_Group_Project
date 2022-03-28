@@ -297,14 +297,23 @@ def show_review(request):
 def add_review(request, piece_name_slug, gallery_name_slug):
     ## see rango show_category
     message = ""
-    p = Piece.objects.get(slug=piece_name_slug)
+    piece = Piece.objects.get(slug=piece_name_slug)
     if request.method == 'POST':
 
-        review_form = AddReviewForm(request.POST, instance = p)
+
+        review_form = AddReviewForm(request.POST)
 
         if review_form.is_valid():
 
-            review_form.save()
+
+
+            review = review_form.save(commit = False)
+
+            review.piece_id = piece
+
+
+            review.save()
+
             message = "Review Added"
 
         else:
@@ -312,16 +321,15 @@ def add_review(request, piece_name_slug, gallery_name_slug):
             # Print problems to the terminal.
             print(review_form.errors)
 
-    form = AddReviewForm(instance = p)
+    form = AddReviewForm()
 
     context_dict = {
         "form":form,
         "message":message,
     }
 
-    p = Piece.objects.get(slug=piece_name_slug)
     gallery = Gallery.objects.get(slug=gallery_name_slug)
-    context_dict['piece'] = p
+    context_dict['piece'] = piece
     context_dict['gallery'] = gallery
     # which template is this?
     return render(request, 'artyParty/add_review.html', context=context_dict)
