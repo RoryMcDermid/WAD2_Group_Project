@@ -169,7 +169,7 @@ def add_piece(request):
 
 @login_required
 def add_gallery(request):
-    # from rango
+
     context_dict = {}
 
     return render(request, 'artyParty/add_galleries.html', context=context_dict)
@@ -177,7 +177,7 @@ def add_gallery(request):
 
 @login_required
 def manage_users(request):
-    # for power users
+
     context_dict = {}
 
     return render(request, 'artyParty/manage_users.html', context=context_dict)
@@ -260,7 +260,7 @@ def show_gallery(request, gallery_name_slug):
 
 
 def piece(request, gallery_name_slug, piece_name_slug):
-    ## see rango show_category
+
     context_dict = {}
     try:
         p = Piece.objects.get(slug=piece_name_slug)
