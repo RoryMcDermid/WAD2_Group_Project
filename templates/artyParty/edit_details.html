@@ -15,21 +15,21 @@
         <h1><strong>Edit Details</strong></h1><br />
         <form id="personal_detail" method="post" action="{% url 'arty:edit_details' %}">
             {% csrf_token %}
-    <!--        {{ form.as_p }}-->
+            {{ form.as_p }}
 
-            <div class ="form-group">
-                <input type="hidden" name="csrfmiddlewaretoken" value="ovzVsYQBIlgWs8r137TTMOGzy3aIVTcpTRAW5m8YfFdScEDh5buk28yhBs2smtGX">
-                <p>
-                    <label for="id_username">Username:</label>
-                    <input type="text" name="username" class="form-control" value="scott" maxlength="150" required id="id_username"> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
-                </p>
-            </div>
-            <div class ="form-group">
-                <p>
-                    <label for="id_email">Email address:</label>
-                    <input type="email" name="email" class="form-control" value="s@p.com" maxlength="254" id="id_email">
-                </p>
-            </div>
+<!--            <div class ="form-group">-->
+<!--                <input type="hidden" name="csrfmiddlewaretoken" value="ovzVsYQBIlgWs8r137TTMOGzy3aIVTcpTRAW5m8YfFdScEDh5buk28yhBs2smtGX">-->
+<!--                <p>-->
+<!--                    <label for="id_username">Username:</label>-->
+<!--                    <input type="text" name="username" class="form-control" value="scott" maxlength="150" required id="id_username"> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class ="form-group">-->
+<!--                <p>-->
+<!--                    <label for="id_email">Email address:</label>-->
+<!--                    <input type="email" name="email" class="form-control" value="s@p.com" maxlength="254" id="id_email">-->
+<!--                </p>-->
+<!--            </div>-->
 
             <input type="submit" value="Edit Details">
         </form>
