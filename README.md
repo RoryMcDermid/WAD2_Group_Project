@@ -6,5 +6,5 @@
 following command to activate it: conda activate ArtyParty
 2) see [this](https://pip.pypa.io/en/stable/cli/pip_freeze/) page to install from requirements .txt
 ```pip install -r requirements.txt```
-        
-        
+3) if requirements doesnt work look at the requirements folder and indivdually do them
+4) debugg is off on python anyhwere however for it to run on your own machine debugg is kept on on the git and 127.0.0.1 has been added to the ALLOWED_URL
